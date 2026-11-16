@@ -1,2 +1,2 @@
-# SkillBridge-AI
+# SkillBridge
 Career and Skill Development Platform
