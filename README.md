@@ -1,2 +1,2 @@
 # SkillBridge
-Career and Skill Development Platform
+Personalized Career and Skill Development Platform
