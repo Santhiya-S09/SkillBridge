@@ -1,0 +1,653 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assessment History | SkillBridge </title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --purple:#8052d6;
+    --pink:#e45fa9;
+    --text:#302442;
+    --muted:#91869e;
+    --border:#eee6f5;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:#faf7ff;
+    color:var(--text);
+}
+
+a{
+    text-decoration:none;
+}
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:255px;
+    flex-shrink:0;
+    background:#ffffff;
+    border-right:1px solid var(--border);
+    padding:27px 17px;
+    display:flex;
+    flex-direction:column;
+    box-shadow:4px 0 20px #6e45a008;
+}
+
+.brand{
+    font-size:21px;
+    font-weight:900;
+    letter-spacing:-1px;
+    padding:5px 12px;
+    margin-bottom:48px;
+    color:#302442;
+}
+
+.brand span{
+    background:linear-gradient(90deg,#a16bea,#e45caa);
+    background-clip:text;
+    color:transparent;
+}
+
+.side-label{
+    font-size:9px;
+    letter-spacing:1.8px;
+    font-weight:800;
+    color:#aaa0b8;
+    padding:0 13px;
+    margin-bottom:14px;
+    margin-top:15px;
+}
+
+.sidebar a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#81778f;
+    padding:13px 14px;
+    margin-bottom:7px;
+    border:1px solid transparent;
+    border-radius:11px;
+    font-size:12px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.sidebar a:hover{
+    background:#f8f2ff;
+    color:#8052cc;
+}
+
+.sidebar a.active{
+    background:linear-gradient(100deg,#f0e7ff,#fff0f8);
+    border-color:#ead9ff;
+    color:#824ecb;
+    box-shadow:inset 3px 0 #a16bea;
+}
+
+.nav-icon{
+    font-size:17px;
+    width:20px;
+    text-align:center;
+}
+
+.sidebar-bottom{
+    margin-top:auto;
+    padding:18px;
+    border:1px solid #ead9ff;
+    border-radius:14px;
+    background:linear-gradient(140deg,#f4eaff,#fff0f7);
+}
+
+.sidebar-bottom h4{
+    font-size:12px;
+    color:#8c55c9;
+    margin-bottom:8px;
+}
+
+.sidebar-bottom p{
+    font-size:10px;
+    line-height:1.8;
+    color:#8a7c98;
+}
+
+/* MAIN */
+
+.main{
+    flex:1;
+    min-width:0;
+}
+
+.topbar{
+    height:76px;
+    padding:0 38px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#ffffff;
+    border-bottom:1px solid var(--border);
+}
+
+.topbar h3{
+    font-size:15px;
+    color:#302442;
+}
+
+.topbar small{
+    display:block;
+    color:#958a9f;
+    font-size:10px;
+    margin-top:5px;
+}
+
+.profile{
+    font-size:11px;
+    color:#9955c9;
+    font-weight:700;
+}
+
+/* CONTENT */
+
+.content{
+    max-width:1050px;
+    margin:auto;
+    padding:35px 38px 45px;
+}
+
+.page-heading{
+    margin-bottom:30px;
+}
+
+.heading-tag{
+    display:inline-block;
+    padding:8px 13px;
+    background:#f1eaff;
+    border:1px solid #e8d9fb;
+    border-radius:30px;
+    color:#9457ca;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:1.2px;
+    margin-bottom:15px;
+}
+
+.page-title{
+    font-size:29px;
+    font-weight:800;
+    letter-spacing:-1px;
+    color:#352745;
+    margin-bottom:10px;
+}
+
+.page-title span{
+    background:linear-gradient(90deg,#8953d8,#e45fa9);
+    background-clip:text;
+    color:transparent;
+}
+
+.page-subtitle{
+    color:#92869e;
+    font-size:12px;
+    line-height:1.8;
+}
+
+/* HISTORY CARD */
+
+.history-card{
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:27px;
+    margin-bottom:22px;
+    box-shadow:0 8px 28px #73509b0a;
+    transition:.25s ease;
+}
+
+.history-card:hover{
+    border-color:#d9bdf3;
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px #9b65d51a;
+}
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:13px;
+}
+
+.assessment-title{
+    color:#352745;
+    font-size:17px;
+    font-weight:750;
+}
+
+.assessment-number{
+    color:#a18eae;
+    font-size:10px;
+    font-weight:600;
+    margin-bottom:5px;
+}
+
+.level{
+    display:inline-block;
+    padding:8px 15px;
+    border-radius:20px;
+    background:linear-gradient(100deg,#f0e8ff,#fff0f7);
+    border:1px solid #ead9ff;
+    color:#9556c9;
+    font-size:11px;
+    font-weight:700;
+}
+
+.date-text{
+    color:#968b9e;
+    font-size:11px;
+    margin-bottom:23px;
+}
+
+.section-title{
+    color:#59436c;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:15px;
+}
+
+.score-item{
+    background:linear-gradient(120deg,#fffaff,#faf7ff);
+    border:1px solid #eee5f7;
+    padding:15px;
+    border-radius:11px;
+    margin-bottom:12px;
+    color:#695b77;
+    font-size:11px;
+    min-height:48px;
+    gap:8px;
+}
+
+.score-item strong{
+    font-weight:700;
+}
+
+.score-value{
+    color:#9859c9;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+/* AVERAGE */
+
+.average-section{
+    border-top:1px solid #eee7f5;
+    padding-top:19px;
+    margin-top:10px;
+}
+
+.average-label{
+    color:#93879d;
+    font-size:11px;
+    font-weight:600;
+}
+
+.average{
+    color:#9256cc;
+    font-size:26px;
+    font-weight:800;
+    margin-top:5px;
+}
+
+/* EMPTY STATE */
+
+.empty-box{
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:55px 20px;
+    text-align:center;
+    box-shadow:0 8px 28px #73509b0a;
+}
+
+.empty-icon{
+    width:75px;
+    height:75px;
+    margin:0 auto 18px;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(135deg,#f0e8ff,#fff0f7);
+    border:1px solid #ead9ff;
+    border-radius:22px;
+    font-size:32px;
+}
+
+.empty-title{
+    color:#352745;
+    font-weight:800;
+    font-size:18px;
+}
+
+.empty-text{
+    color:#95899f;
+    font-size:11px;
+    line-height:1.8;
+    margin:12px 0 25px;
+}
+
+/* BUTTONS */
+
+.btn-primary-custom{
+    display:inline-block;
+    background:linear-gradient(100deg,#8051d7,#df61aa);
+    color:#ffffff;
+    border:none;
+    border-radius:10px;
+    padding:12px 23px;
+    font-size:11px;
+    font-weight:700;
+    text-decoration:none;
+    transition:.2s ease;
+    box-shadow:0 7px 18px #a45ecb25;
+}
+
+.btn-primary-custom:hover{
+    color:#ffffff;
+    transform:translateY(-2px);
+    box-shadow:0 9px 22px #a45ecb35;
+}
+
+.btn-outline-custom{
+    display:inline-block;
+    color:#9256c9;
+    border:1px solid #e3d3f4;
+    border-radius:10px;
+    padding:11px 22px;
+    text-decoration:none;
+    font-size:11px;
+    font-weight:700;
+    transition:.2s ease;
+    background:#ffffff;
+}
+
+.btn-outline-custom:hover{
+    background:#f5edff;
+    color:#d35da7;
+    border-color:#d8b9f5;
+}
+
+.footer{
+    text-align:center;
+    padding:22px;
+    border-top:1px solid var(--border);
+    font-size:9px;
+    color:#a096aa;
+}
+
+.footer strong{
+    color:#9859c9;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+    .sidebar{
+        width:220px;
+    }
+
+    .content{
+        padding:25px 20px;
+    }
+
+    .topbar{
+        padding:0 20px;
+    }
+}
+
+@media(max-width:700px){
+    .app{
+        display:block;
+    }
+
+    .sidebar{
+        width:100%;
+        height:auto;
+        padding:17px;
+    }
+
+    .brand{
+        margin-bottom:15px;
+    }
+
+    .side-label,.sidebar-bottom{
+        display:none;
+    }
+
+    .sidebar a{
+        display:inline-flex;
+        padding:9px;
+        margin:3px;
+        font-size:10px;
+    }
+
+    .topbar{
+        height:65px;
+        padding:0 14px;
+    }
+
+    .content{
+        padding:25px 14px;
+    }
+
+    .page-title{
+        font-size:24px;
+    }
+
+    .history-card{
+        padding:20px;
+    }
+
+    .score-item{
+        padding:12px;
+        font-size:10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="brand">✦ SkillBridge <span>AI</span></div>
+
+        <div class="side-label">WORKSPACE</div>
+
+        <a href="{% url 'dashboard' %}">
+            <span class="nav-icon">▦</span> Dashboard
+        </a>
+
+        <a href="{% url 'career_guidance' %}">
+            <span class="nav-icon">◎</span> Career Guidance
+        </a>
+
+        <a href="{% url 'skill_assessment' %}">
+            <span class="nav-icon">◇</span> Skill Assessment
+        </a>
+
+        <a href="{% url 'assessment_history' %}" class="active">
+            <span class="nav-icon">◷</span> Assessment History
+        </a>
+
+        <a href="{% url 'skill_gap_analysis' %}">
+            <span class="nav-icon">✦</span> AI Skill Gap Analysis
+        </a>
+
+        <a href="{% url 'learning_roadmap' %}">
+            <span class="nav-icon">↗</span> Learning Roadmap
+        </a>
+
+        <div class="side-label">ACCOUNT</div>
+
+        <a href="{% url 'logout' %}">
+            <span class="nav-icon">↗</span> Logout
+        </a>
+
+        <div class="sidebar-bottom">
+            <h4>✦ Keep Growing</h4>
+            <p>Track your progress and celebrate every improvement in your skills.</p>
+        </div>
+
+    </aside>
+
+    <div class="main">
+
+        <header class="topbar">
+            <div>
+                <h3>Assessment History</h3>
+                <small>Your previous skill assessment records</small>
+            </div>
+
+            <div class="profile">
+                Welcome, {{ request.user.username }}
+            </div>
+        </header>
+
+        <main class="content">
+
+            <div class="page-heading">
+                <span class="heading-tag">✦ YOUR LEARNING JOURNEY</span>
+
+                <h2 class="page-title">
+                    My <span>Assessment History</span>
+                </h2>
+
+                <p class="page-subtitle">
+                    Track your previous skill assessment results and monitor your progress.
+                </p>
+            </div>
+
+            {% if assessments %}
+
+                {% for assessment in assessments %}
+
+                    <div class="history-card">
+
+                        <div class="card-top">
+
+                            <div>
+                                <div class="assessment-number">
+                                    ASSESSMENT RECORD {{ forloop.counter }}
+                                </div>
+
+                                <h5 class="assessment-title">
+                                    Assessment #{{ forloop.counter }}
+                                </h5>
+                            </div>
+
+                            <span class="level">
+                                {{ assessment.level }}
+                            </span>
+
+                        </div>
+
+                        <p class="date-text">
+                            📅 {{ assessment.created_at|date:"d M Y, h:i A" }}
+                        </p>
+
+                        <h6 class="section-title">
+                            Your Skill Scores
+                        </h6>
+
+                        <div class="row">
+
+                            {% for skill, score in assessment.scores.items %}
+
+                                <div class="col-md-4 col-6">
+                                    <div class="score-item d-flex justify-content-between align-items-center">
+                                        <strong>{{ skill }}</strong>
+
+                                        <span class="score-value">
+                                            {{ score }}/5
+                                        </span>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="average-section text-end">
+
+                            <span class="average-label">
+                                Average Score
+                            </span>
+
+                            <div class="average">
+                                {{ assessment.average_score|floatformat:2 }} / 5
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty-box">
+
+                    <div class="empty-icon">📊</div>
+
+                    <h4 class="empty-title">
+                        No Assessment History Yet!
+                    </h4>
+
+                    <p class="empty-text">
+                        Complete your first skill assessment to see your results here.
+                    </p>
+
+                    <a href="{% url 'skill_assessment' %}" class="btn-primary-custom">
+                        Take Assessment →
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+            <div class="text-center mt-4">
+                <a href="{% url 'dashboard' %}" class="btn-outline-custom">
+                    ← Back to Dashboard
+                </a>
+            </div>
+
+        </main>
+
+        <footer class="footer">
+            © 2026 <strong>SkillBridge </strong> · Your Career Growth Starts Here
+        </footer>
+
+    </div>
+
+</div>
+
+</body>
+</html>

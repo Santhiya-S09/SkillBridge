@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python OOP | SkillBridge </title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f8f5ff;
+            color: #38304a;
+            line-height: 1.7;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee5fa;
+            box-shadow: 0 3px 15px rgba(100, 60, 150, 0.05);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #713ac5;
+        }
+
+        header a {
+            color: #9b43b8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        header a:hover {
+            color: #713ac5;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 35px auto;
+            padding: 0 22px;
+        }
+
+        .hero {
+            padding: 35px;
+            border-radius: 20px;
+            background: linear-gradient(120deg, #773bd0, #a044c6, #e17ab8);
+            margin-bottom: 25px;
+            box-shadow: 0 12px 30px rgba(139, 65, 190, 0.18);
+            color: white;
+        }
+
+        .hero span {
+            color: #f6e7ff;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .hero h1 {
+            margin: 12px 0;
+            font-size: 30px;
+        }
+
+        .hero p {
+            color: #fff0ff;
+        }
+
+        .panel {
+            background: #ffffff;
+            border: 1px solid #eee4fa;
+            border-radius: 17px;
+            padding: 26px;
+            margin-bottom: 22px;
+            box-shadow: 0 5px 20px rgba(111, 65, 160, 0.06);
+        }
+
+        h2 {
+            color: #793fc1;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #59318d;
+            margin: 20px 0 10px;
+        }
+
+        p, li {
+            color: #70677e;
+        }
+
+        ul {
+            padding-left: 22px;
+            margin: 12px 0;
+        }
+
+        .code-box {
+            background: #302344;
+            border: 1px solid #49345e;
+            border-radius: 10px;
+            padding: 18px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        pre {
+            color: #f3d8ff;
+            font-size: 14px;
+            white-space: pre-wrap;
+            font-family: Consolas, monospace;
+        }
+
+        .note {
+            background: #fff2f8;
+            border-left: 4px solid #d16ab2;
+            padding: 14px;
+            border-radius: 7px;
+            margin-top: 15px;
+            color: #914878;
+        }
+
+        .question {
+            background: #fcf8ff;
+            border: 1px solid #eadcf7;
+            border-radius: 10px;
+            padding: 18px;
+            margin: 15px 0;
+        }
+
+        .question p {
+            color: #59318d;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .question label {
+            display: block;
+            padding: 6px 0;
+            color: #655875;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            accent-color: #934bc9;
+            margin-right: 8px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #773bd0, #c04cae);
+            color: white;
+            border: none;
+            padding: 13px 22px;
+            border-radius: 9px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 14px rgba(140, 65, 180, 0.22);
+        }
+
+        #quiz-result {
+            margin-top: 18px;
+            font-weight: bold;
+            color: #843bb0;
+        }
+
+        .completion-panel {
+            text-align: center;
+            border: 1px solid #e7d5f5;
+            background: linear-gradient(145deg, #ffffff, #fcf5ff);
+        }
+
+        .completion-panel h2 {
+            color: #793fc1;
+        }
+
+        .completed-message {
+            background: #f0fff7;
+            border: 1px solid #bce8d0;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 18px 0;
+        }
+
+        .completed-message h3 {
+            color: #32835c;
+            margin: 0 0 10px;
+        }
+
+        .completed-message p {
+            color: #32835c;
+        }
+
+        .completion-panel button {
+            margin-top: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #9588a6;
+            border-top: 1px solid #eee4fa;
+            margin-top: 30px;
+            background: #ffffff;
+        }
+
+        @media(max-width: 600px) {
+            header {
+                padding: 16px 5%;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .hero {
+                padding: 23px;
+            }
+
+            .hero h1 {
+                font-size: 25px;
+            }
+
+            .panel {
+                padding: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">✦ SkillBridge </div>
+    <a href="{% url 'learning_roadmap' %}">← Back to Roadmap</a>
+</header>
+
+<main>
+
+    <section class="hero">
+        <span>PYTHON DEVELOPER · STEP 02</span>
+        <h1>OOP, Modules and Exception Handling</h1>
+        <p>
+            Learn how to organize Python programs using classes,
+            objects, reusable modules and error handling.
+        </p>
+    </section>
+
+    <section class="panel">
+        <h2>1. Introduction to OOP</h2>
+
+        <p>
+            OOP stands for Object-Oriented Programming.
+            It is a programming approach that organizes code using
+            classes and objects.
+        </p>
+
+        <h3>Why do we use OOP?</h3>
+
+        <ul>
+            <li>Organizes code clearly.</li>
+            <li>Encourages code reuse.</li>
+            <li>Makes large programs easier to maintain.</li>
+            <li>Helps represent real-world entities.</li>
+        </ul>
+
+        <div class="note">
+            Example: A Student can have properties such as name and age,
+            and actions such as studying.
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>2. Classes and Objects</h2>
+
+        <p>
+            A class is a blueprint used to create objects.
+            An object is an instance of a class.
+        </p>
+
+        <h3>Example:</h3>
+
+        <div class="code-box">
+<pre>class Student:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def display(self):
+        print(self.name)
+        print(self.age)
+
+student1 = Student("Alex", 21)
+student1.display()</pre>
+        </div>
+
+        <h3>Explanation:</h3>
+
+        <ul>
+            <li><b>class Student:</b> Creates a class.</li>
+            <li><b>__init__:</b> Initializes object data.</li>
+            <li><b>self:</b> Refers to the current object.</li>
+            <li><b>student1:</b> An object of Student class.</li>
+            <li><b>display():</b> A method that displays student details.</li>
+        </ul>
+
+        <div class="note">
+            Output: Alex and 21
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>3. Inheritance</h2>
+
+        <p>
+            Inheritance allows one class to reuse the properties
+            and methods of another class.
+        </p>
+
+        <h3>Example:</h3>
+
+        <div class="code-box">
+<pre>class Animal:
+    def eat(self):
+        print("Animal is eating")
+
+class Dog(Animal):
+    def bark(self):
+        print("Dog is barking")
+
+my_dog = Dog()
+my_dog.eat()
+my_dog.bark()</pre>
+        </div>
+
+        <h3>Explanation:</h3>
+
+        <ul>
+            <li>Animal is the parent class.</li>
+            <li>Dog is the child class.</li>
+            <li>Dog can use the eat() method from Animal.</li>
+            <li>Dog also has its own bark() method.</li>
+        </ul>
+    </section>
+
+    <section class="panel">
+        <h2>4. Python Modules</h2>
+
+        <p>
+            A module is a Python file that contains reusable
+            functions, variables or classes.
+        </p>
+
+        <h3>Example using a built-in module:</h3>
+
+        <div class="code-box">
+<pre>import math
+
+result = math.sqrt(25)
+
+print(result)</pre>
+        </div>
+
+        <div class="note">
+            Output: 5.0
+        </div>
+
+        <h3>Common modules:</h3>
+
+        <ul>
+            <li>math – Mathematical operations.</li>
+            <li>random – Generates random values.</li>
+            <li>datetime – Works with dates and time.</li>
+            <li>os – Works with operating system features.</li>
+        </ul>
+    </section>
+
+    <section class="panel">
+        <h2>5. Exception Handling</h2>
+
+        <p>
+            Exception handling is used to manage errors that occur
+            while a program is running.
+        </p>
+
+        <h3>Example:</h3>
+
+        <div class="code-box">
+<pre>try:
+    number = int(input("Enter a number: "))
+    print(10 / number)
+
+except ValueError:
+    print("Please enter a valid number")
+
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+finally:
+    print("Program finished")</pre>
+        </div>
+
+        <h3>Important keywords:</h3>
+
+        <ul>
+            <li><b>try:</b> Contains code that may cause an error.</li>
+            <li><b>except:</b> Handles an error.</li>
+            <li><b>finally:</b> Runs whether an error occurs or not.</li>
+        </ul>
+    </section>
+
+    <section class="panel">
+        <h2>6. Practice Exercises</h2>
+
+        <p>Practice these programs using Python.</p>
+
+        <h3>Exercise 1 – Create a Class</h3>
+        <p>
+            Create a Book class with title and author properties.
+            Create an object and display the details.
+        </p>
+
+        <h3>Exercise 2 – Inheritance</h3>
+        <p>
+            Create a parent class Vehicle and a child class Car.
+            Add one method to each class.
+        </p>
+
+        <h3>Exercise 3 – Modules</h3>
+        <p>
+            Import the random module and generate a random number.
+        </p>
+
+        <h3>Exercise 4 – Exception Handling</h3>
+        <p>
+            Write a program that handles division by zero using try and except.
+        </p>
+    </section>
+
+    <section class="panel">
+        <h2>7. Knowledge Check – Python Quiz</h2>
+
+        <p>Answer all five questions to check your understanding.</p>
+
+        <form id="quiz-form">
+
+            <div class="question">
+                <p>1. What is OOP?</p>
+                <label><input type="radio" name="q1" value="a"> Object-Oriented Programming</label>
+                <label><input type="radio" name="q1" value="b"> Open Operating Program</label>
+                <label><input type="radio" name="q1" value="c"> Online Object Process</label>
+            </div>
+
+            <div class="question">
+                <p>2. What is a class?</p>
+                <label><input type="radio" name="q2" value="a"> A loop</label>
+                <label><input type="radio" name="q2" value="b"> A blueprint for objects</label>
+                <label><input type="radio" name="q2" value="c"> A variable only</label>
+            </div>
+
+            <div class="question">
+                <p>3. Which keyword is used to define a class?</p>
+                <label><input type="radio" name="q3" value="a"> import</label>
+                <label><input type="radio" name="q3" value="b"> try</label>
+                <label><input type="radio" name="q3" value="c"> class</label>
+            </div>
+
+            <div class="question">
+                <p>4. Which keyword imports a module?</p>
+                <label><input type="radio" name="q4" value="a"> import</label>
+                <label><input type="radio" name="q4" value="b"> print</label>
+                <label><input type="radio" name="q4" value="c"> return</label>
+            </div>
+
+            <div class="question">
+                <p>5. Which block handles exceptions?</p>
+                <label><input type="radio" name="q5" value="a"> class</label>
+                <label><input type="radio" name="q5" value="b"> except</label>
+                <label><input type="radio" name="q5" value="c"> import</label>
+            </div>
+
+            <button type="button" onclick="checkQuiz()">
+                Submit Quiz
+            </button>
+
+            <div id="quiz-result"></div>
+
+        </form>
+    </section>
+
+    <!-- LESSON COMPLETION SECTION -->
+
+    <section class="panel completion-panel">
+
+        <h2>8. Lesson Completion</h2>
+
+        {% if is_completed %}
+
+            <div class="completed-message">
+                <h3>✓ Lesson Completed!</h3>
+
+                <p>
+                    You have successfully completed this lesson.
+                </p>
+
+                <p>
+                    Your progress has been saved successfully.
+                </p>
+            </div>
+
+            <button type="button"
+                onclick="window.location.href='{% url 'learning_roadmap' %}'">
+                Back to Learning Roadmap
+            </button>
+
+        {% else %}
+
+            <p>
+                Finished learning and practising this lesson?
+                Mark it as completed to save your progress.
+            </p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <input type="hidden"
+                       name="action"
+                       value="complete_lesson">
+
+                <button type="submit">
+                    ✓ Mark Lesson as Completed
+                </button>
+            </form>
+
+        {% endif %}
+
+    </section>
+
+</main>
+
+<footer>
+    SkillBridge  · Learn Today, Grow Tomorrow
+</footer>
+
+<script>
+    function checkQuiz() {
+
+        const answers = {
+            q1: "a",
+            q2: "b",
+            q3: "c",
+            q4: "a",
+            q5: "b"
+        };
+
+        let score = 0;
+        let attempted = 0;
+
+        for (let question in answers) {
+
+            const selected = document.querySelector(
+                'input[name="' + question + '"]:checked'
+            );
+
+            if (selected) {
+                attempted++;
+
+                if (selected.value === answers[question]) {
+                    score++;
+                }
+            }
+        }
+
+        const result = document.getElementById("quiz-result");
+
+        if (attempted < 5) {
+            result.textContent =
+                "Please answer all 5 questions before submitting.";
+            return;
+        }
+
+        result.textContent = "Your Score: " + score + " / 5";
+
+        if (score >= 4) {
+            result.textContent += " — Excellent work! 🎉";
+        } else if (score >= 3) {
+            result.textContent += " — Good effort! Keep practising.";
+        } else {
+            result.textContent += " — Review the lesson and try again.";
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Roadmap | SkillBridge </title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #faf7ff;
+            color: #30234a;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee5fa;
+            box-shadow: 0 3px 15px rgba(91, 47, 145, 0.04);
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 800;
+            color: #7138b8;
+            letter-spacing: -0.7px;
+        }
+
+        header a {
+            color: #8545c5;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        header a:hover {
+            color: #e34c9a;
+        }
+
+        main {
+            max-width: 1050px;
+            margin: 42px auto;
+            padding: 0 22px;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 48px;
+            border-radius: 25px;
+            color: white;
+            background: linear-gradient(120deg, #7138b8, #a34cc9, #e45a9c);
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(139, 65, 184, 0.19);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.10);
+            right: -55px;
+            top: -85px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            right: 130px;
+            bottom: -75px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero span {
+            font-size: 12px;
+            letter-spacing: 1.8px;
+            color: #ffe5f4;
+            font-weight: 800;
+        }
+
+        .hero h1 {
+            font-size: 34px;
+            margin: 17px 0 12px;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            line-height: 1.8;
+            color: #fbeafa;
+            max-width: 650px;
+            font-size: 15px;
+        }
+
+        .panel {
+            background: #ffffff;
+            border: 1px solid #f0e5fa;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 28px rgba(91, 47, 145, 0.06);
+        }
+
+        .panel h2 {
+            color: #7138b8;
+            margin-bottom: 10px;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .panel > p {
+            color: #887a9c;
+            line-height: 1.7;
+            margin-bottom: 22px;
+            font-size: 14px;
+        }
+
+        .career-select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e5d4f3;
+            border-radius: 12px;
+            background: #fdfaff;
+            color: #51316e;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            outline: none;
+            margin-bottom: 20px;
+        }
+
+        .career-select:focus {
+            border-color: #a34cc9;
+            box-shadow: 0 0 0 3px rgba(163, 76, 201, 0.10);
+        }
+
+        .selected-career {
+            background: linear-gradient(135deg, #fbf6ff, #fff5fa);
+            border: 1px solid #edddf7;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .selected-career small {
+            display: block;
+            color: #927ca8;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .selected-career h3 {
+            color: #7138b8;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        button {
+            background: linear-gradient(120deg, #7138b8, #c34db0, #e45a9c);
+            color: white;
+            border: none;
+            border-radius: 11px;
+            padding: 14px 24px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s ease;
+            box-shadow: 0 6px 16px rgba(163, 76, 201, 0.16);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 9px 20px rgba(163, 76, 201, 0.25);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .notice {
+            background: #fff5fa;
+            border: 1px solid #f2d5e8;
+            color: #a34c86;
+            padding: 17px;
+            border-radius: 12px;
+            line-height: 1.7;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        .progress-box {
+            background: linear-gradient(135deg, #fbf6ff, #fff5fa);
+            border: 1px solid #edddf7;
+            padding: 24px;
+            border-radius: 16px;
+            margin: 25px 0;
+        }
+
+        .progress-box h3 {
+            color: #7138b8;
+            margin-bottom: 17px;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            color: #81718f;
+            font-size: 14px;
+            margin-bottom: 13px;
+            font-weight: 600;
+        }
+
+        #progress-percent {
+            color: #d34c9c;
+            font-weight: 800;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 13px;
+            background: #eadcf5;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #7138b8, #c34db0, #ed6aa6);
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+
+        .step {
+            display: flex;
+            gap: 19px;
+            padding: 23px 18px;
+            border: 1px solid #f0e7f8;
+            border-radius: 15px;
+            margin-bottom: 14px;
+            background: #ffffff;
+            transition: 0.25s ease;
+        }
+
+        .step:hover {
+            border-color: #d9b8ee;
+            background: #fdfaff;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 18px rgba(113, 56, 184, 0.06);
+        }
+
+        .number {
+            min-width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #f0e3ff, #ffe5f3);
+            color: #8c42bd;
+            border: 1px solid #ead7f5;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .step-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .step-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .roadmap-check {
+            width: 18px;
+            height: 18px;
+            margin-top: 4px;
+            accent-color: #a34cc9;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .step h3 {
+            color: #51316e;
+            margin: 3px 0 8px;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .step p {
+            color: #8b7c9b;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .lesson-link {
+            display: inline-block;
+            margin-top: 13px;
+            color: #a343bd;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 13px;
+            background: #f8edff;
+            padding: 9px 14px;
+            border-radius: 9px;
+            transition: 0.2s;
+        }
+
+        .lesson-link:hover {
+            color: #d34c9c;
+            background: #fff0f7;
+        }
+
+        .step.completed {
+            background: #fcf8ff;
+            border-color: #dfc7f0;
+        }
+
+        .step.completed .number {
+            background: #e9ddf8;
+            color: #7138b8;
+        }
+
+        .step.completed h3,
+        .step.completed p {
+            color: #a99bb5;
+            text-decoration: line-through;
+        }
+
+        .completion-message {
+            display: none;
+            color: #7138a0;
+            background: #f5eaff;
+            border: 1px solid #dfc1f2;
+            padding: 17px;
+            border-radius: 12px;
+            margin-top: 19px;
+            font-weight: 800;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 27px;
+            color: #9a8aa9;
+            font-size: 13px;
+            border-top: 1px solid #eee4f6;
+            margin-top: 40px;
+            background: #ffffff;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 18px 5%;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            main {
+                margin: 25px auto;
+                padding: 0 15px;
+            }
+
+            .hero {
+                padding: 28px 23px;
+                border-radius: 19px;
+            }
+
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .panel {
+                padding: 21px 17px;
+            }
+
+            .step {
+                gap: 12px;
+                padding: 19px 13px;
+            }
+
+            .number {
+                min-width: 37px;
+                height: 37px;
+                border-radius: 10px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">✦ SkillBridge </div>
+    <a href="{% url 'dashboard' %}">← Dashboard</a>
+</header>
+
+<main>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span>✦ YOUR PERSONAL LEARNING PLAN</span>
+            <h1>Build Your Future, One Step at a Time 🚀</h1>
+            <p>
+                Choose your career goal and generate a structured learning
+                roadmap with five steps and practical lessons.
+            </p>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Select Your Career Goal</h2>
+        <p>
+            Choose the career you want to develop your skills for.
+            SkillBridge  will create a personalized five-step learning roadmap.
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="generate_roadmap">
+
+            <select name="goal" class="career-select" required>
+                <option value="" disabled {% if not goal %}selected{% endif %}>
+                    -- Select Your Career Goal --
+                </option>
+
+                <option value="Python Developer"
+                    {% if goal == "Python Developer" %}selected{% endif %}>
+                    Python Developer
+                </option>
+
+                <option value="Web Developer"
+                    {% if goal == "Web Developer" %}selected{% endif %}>
+                    Web Developer
+                </option>
+
+                <option value="Data Analyst"
+                    {% if goal == "Data Analyst" %}selected{% endif %}>
+                    Data Analyst
+                </option>
+
+                <option value="AI Engineer"
+                    {% if goal == "AI Engineer" %}selected{% endif %}>
+                    AI Engineer
+                </option>
+            </select>
+
+            <button type="submit">Generate My Roadmap →</button>
+        </form>
+
+        {% if generated and goal %}
+            <div class="selected-career">
+                <small>YOUR SELECTED CAREER GOAL</small>
+                <h3>✦ {{ goal }}</h3>
+            </div>
+
+            <div class="notice">
+                Your learning roadmap is ready! Complete each step
+                and open the lessons to improve your skills.
+            </div>
+        {% endif %}
+    </section>
+
+    {% if generated and steps %}
+
+        <section class="panel">
+            <h2>{{ goal }} Roadmap</h2>
+            <p>Complete each learning step and save your progress.</p>
+
+            <div class="progress-box">
+                <h3>✦ Your Learning Progress</h3>
+
+                <div class="progress-info">
+                    <span>
+                        <span id="completed-count">0</span>
+                        of {{ steps|length }} steps completed
+                    </span>
+
+                    <span id="progress-percent">0%</span>
+                </div>
+
+                <div
+                    class="progress-track"
+                    role="progressbar"
+                    aria-label="Learning progress"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="0"
+                    id="progress-track"
+                >
+                    <div id="progress-bar" class="progress-fill"></div>
+                </div>
+
+                <div id="completion-message" class="completion-message">
+                    🎉 Congratulations! You completed your learning roadmap!
+                </div>
+            </div>
+
+            <form method="POST" id="progress-form">
+                {% csrf_token %}
+
+                <input type="hidden" name="goal" value="{{ goal }}">
+                <input type="hidden" name="action" value="save_progress">
+
+                <div id="roadmap-steps">
+
+                    {% for step in steps %}
+
+                        <div class="step">
+
+                            <div class="number">
+                                {{ forloop.counter|stringformat:"02d" }}
+                            </div>
+
+                            <div class="step-content">
+
+                                <label class="step-check">
+                                    <input
+                                        type="checkbox"
+                                        class="roadmap-check"
+                                        name="completed_steps"
+                                        value="{{ step }}"
+                                        {% if step in completed_steps %}checked{% endif %}
+                                    >
+
+                                    <span>
+                                        <h3>Step {{ forloop.counter }}</h3>
+                                        <p>{{ step }}</p>
+                                    </span>
+                                </label>
+
+                                {% if goal == "Python Developer" %}
+                                    <a
+                                        href="{% url 'learning_center' forloop.counter %}"
+                                        class="lesson-link"
+                                    >
+                                        📘 Open Lesson →
+                                    </a>
+
+                                {% elif goal == "Web Developer" %}
+                                    <a
+                                        href="{% url 'career_learning_center' 'web-developer' forloop.counter %}"
+                                        class="lesson-link"
+                                    >
+                                        📘 Open Lesson →
+                                    </a>
+
+                                {% elif goal == "Data Analyst" %}
+                                    <a
+                                        href="{% url 'career_learning_center' 'data-analyst' forloop.counter %}"
+                                        class="lesson-link"
+                                    >
+                                        📘 Open Lesson →
+                                    </a>
+
+                                {% elif goal == "AI Engineer" %}
+                                    <a
+                                        href="{% url 'career_learning_center' 'ai-engineer' forloop.counter %}"
+                                        class="lesson-link"
+                                    >
+                                        📘 Open Lesson →
+                                    </a>
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+                <button type="submit">Save My Progress →</button>
+            </form>
+        </section>
+
+    {% endif %}
+
+</main>
+
+<footer>
+    SkillBridge · Learn Today, Grow Tomorrow
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const checkboxes = document.querySelectorAll(".roadmap-check");
+        const completedCount = document.getElementById("completed-count");
+        const progressPercent = document.getElementById("progress-percent");
+        const progressBar = document.getElementById("progress-bar");
+        const progressTrack = document.getElementById("progress-track");
+        const completionMessage = document.getElementById("completion-message");
+
+        function updateProgress() {
+
+            const totalSteps = checkboxes.length;
+            let completedSteps = 0;
+
+            checkboxes.forEach(function (checkbox) {
+
+                const step = checkbox.closest(".step");
+
+                if (checkbox.checked) {
+                    completedSteps++;
+                    step.classList.add("completed");
+                } else {
+                    step.classList.remove("completed");
+                }
+
+            });
+
+            const percentage = totalSteps > 0
+                ? Math.round((completedSteps / totalSteps) * 100)
+                : 0;
+
+            if (completedCount) {
+                completedCount.textContent = completedSteps;
+            }
+
+            if (progressPercent) {
+                progressPercent.textContent = percentage + "%";
+            }
+
+            if (progressBar) {
+                progressBar.style.width = percentage + "%";
+            }
+
+            if (progressTrack) {
+                progressTrack.setAttribute("aria-valuenow", percentage);
+            }
+
+            if (completionMessage) {
+                completionMessage.style.display =
+                    totalSteps > 0 && completedSteps === totalSteps
+                        ? "block"
+                        : "none";
+            }
+        }
+
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener("change", updateProgress);
+        });
+
+        updateProgress();
+
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | SkillBridge</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, #f8d9ee, #e7d9ff, #dce2ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 35px;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1120px;
+            min-height: 650px;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            background: #ffffff;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 90px rgba(92, 47, 125, 0.20);
+        }
+
+        /* LEFT SIDE */
+
+        .visual-panel {
+            position: relative;
+            overflow: hidden;
+            padding: 55px;
+            background: linear-gradient(145deg, #8e35b9, #b34bba 48%, #e47ab9);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .visual-panel::before {
+            content: "";
+            position: absolute;
+            width: 430px;
+            height: 430px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.09);
+            top: -190px;
+            right: -170px;
+        }
+
+        .visual-panel::after {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            bottom: -180px;
+            left: -140px;
+        }
+
+        .brand {
+            position: relative;
+            z-index: 2;
+            font-family: 'Outfit', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .visual-content {
+            position: relative;
+            z-index: 2;
+            margin-top: 35px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 9px 15px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.35);
+            background: rgba(255,255,255,0.13);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            margin-bottom: 23px;
+        }
+
+        .visual-content h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 45px;
+            line-height: 1.18;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .visual-content h1 span {
+            color: #ffe1f2;
+        }
+
+        .visual-content p {
+            max-width: 390px;
+            color: #fff0fa;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        /* CAREER GROWTH VISUAL */
+
+        .growth-art {
+            position: relative;
+            z-index: 2;
+            height: 205px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .growth-card {
+            width: 290px;
+            padding: 23px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.35);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 15px 35px rgba(70,20,90,0.15);
+        }
+
+        .growth-heading {
+            text-align: center;
+            font-family: 'Outfit', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .growth-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .growth-step {
+            flex: 1;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .growth-icon {
+            width: 42px;
+            height: 42px;
+            margin: 0 auto 9px;
+            border-radius: 14px;
+            background: #ffffff;
+            color: #a33eb3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 19px;
+            box-shadow: 0 5px 15px rgba(60,20,80,0.12);
+        }
+
+        .growth-arrow {
+            color: #ffe1f2;
+            font-size: 17px;
+            margin-top: -20px;
+        }
+
+        .visual-footer {
+            position: relative;
+            z-index: 2;
+            color: #ffeaf7;
+            font-size: 12px;
+        }
+
+        /* RIGHT SIDE */
+
+        .form-panel {
+            padding: 55px 65px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #ffffff;
+        }
+
+        .form-top {
+            margin-bottom: 32px;
+        }
+
+        .small-title {
+            color: #b04db7;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .form-panel h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 34px;
+            color: #302044;
+            margin-bottom: 10px;
+            letter-spacing: -0.8px;
+        }
+
+        .subtitle {
+            color: #8d8796;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .message {
+            color: #9136a7;
+            background: #fbecfa;
+            border: 1px solid #f2d8ef;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            color: #40364e;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 9px;
+        }
+
+        .input-group {
+            margin-bottom: 21px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px 16px;
+            border: 1px solid #e8e2ec;
+            border-radius: 12px;
+            background: #fcfaff;
+            color: #302044;
+            outline: none;
+            font-size: 13px;
+            transition: 0.25s;
+        }
+
+        input::placeholder {
+            color: #aaa2b2;
+        }
+
+        input:focus {
+            border-color: #bd63c3;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(189,99,195,0.10);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(100deg, #a43bb7, #d35eae);
+            color: white;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 10px 22px rgba(180,65,174,0.23);
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(180,65,174,0.32);
+        }
+
+        .bottom-text {
+            text-align: center;
+            margin-top: 27px;
+            font-size: 13px;
+            color: #898393;
+        }
+
+        .bottom-text a {
+            color: #ac43b5;
+            font-weight: 800;
+            text-decoration: none;
+            margin-left: 4px;
+        }
+
+        .bottom-text a:hover {
+            text-decoration: underline;
+        }
+
+        .form-footer {
+            text-align: center;
+            color: #b3adba;
+            font-size: 11px;
+            margin-top: 42px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 850px) {
+            body {
+                padding: 20px;
+            }
+
+            .main-container {
+                grid-template-columns: 1fr;
+                max-width: 520px;
+            }
+
+            .visual-panel {
+                padding: 35px;
+            }
+
+            .visual-content {
+                margin-top: 35px;
+            }
+
+            .visual-content h1 {
+                font-size: 35px;
+            }
+
+            .growth-art {
+                height: 165px;
+            }
+
+            .form-panel {
+                padding: 40px 35px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            body {
+                padding: 12px;
+            }
+
+            .visual-panel,
+            .form-panel {
+                padding: 30px 23px;
+            }
+
+            .visual-content h1 {
+                font-size: 30px;
+            }
+
+            .form-panel h2 {
+                font-size: 29px;
+            }
+
+            .growth-card {
+                width: 100%;
+                padding: 18px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+
+        <!-- LEFT VISUAL PANEL -->
+
+        <section class="visual-panel">
+
+            <div class="brand">
+                ✦ SkillBridge
+            </div>
+
+            <div class="visual-content">
+
+                <div class="tag">
+                    YOUR CAREER JOURNEY STARTS HERE
+                </div>
+
+                <h1>
+                    Discover Your<br>
+                    Potential.<br>
+                    <span>Build Your Future.</span>
+                </h1>
+
+                <p>
+                    Unlock your potential with personalized career
+                    guidance, skill assessments and learning
+                    roadmaps designed to move your career forward.
+                </p>
+
+                <div class="growth-art">
+
+                    <div class="growth-card">
+
+                        <div class="growth-heading">
+                            Your Growth Journey
+                        </div>
+
+                        <div class="growth-steps">
+
+                            <div class="growth-step">
+                                <div class="growth-icon">📚</div>
+                                Learn
+                            </div>
+
+                            <div class="growth-arrow">→</div>
+
+                            <div class="growth-step">
+                                <div class="growth-icon">✏️</div>
+                                Practice
+                            </div>
+
+                            <div class="growth-arrow">→</div>
+
+                            <div class="growth-step">
+                                <div class="growth-icon">🏆</div>
+                                Grow
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="visual-footer">
+                Learn. Grow. Achieve. &nbsp; ✦
+            </div>
+
+        </section>
+
+        <!-- LOGIN FORM -->
+
+        <section class="form-panel">
+
+            <div class="form-top">
+                <div class="small-title">WELCOME BACK</div>
+
+                <h2>Welcome Back!</h2>
+
+                <p class="subtitle">
+                    Login to continue your journey with SkillBridge.
+                </p>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="message">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="input-group">
+                    <label>Email Address</label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label>Phone Number</label>
+
+                    <input
+                        type="tel"
+                        name="phone_number"
+                        placeholder="Enter your 10-digit phone number"
+                        maxlength="10"
+                        pattern="[0-9]{10}"
+                        inputmode="numeric"
+                        autocomplete="tel"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="login-btn">
+                    Login &nbsp; →
+                </button>
+
+            </form>
+
+            <p class="bottom-text">
+                Don't have an account?
+                <a href="{% url 'register' %}">Create one</a>
+            </p>
+
+            <div class="form-footer">
+                © 2026 SkillBridge. All rights reserved.
+            </div>
+
+        </section>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | SkillBridge </title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #fff5f8, #f1e7ff);
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 430px;
+            background: #ffffff;
+            padding: 42px 36px;
+            border-radius: 22px;
+            box-shadow: 0 15px 45px rgba(183, 75, 125, 0.13);
+            border: 1px solid #ffe4ec;
+        }
+
+        .logo {
+            text-align: center;
+            color: #7541b8;
+            font-size: 28px;
+            font-weight: 750;
+            margin-bottom: 10px;
+        }
+
+        .logo span {
+            color: #e75480;
+        }
+
+        .admin-icon {
+            width: 72px;
+            height: 72px;
+            margin: 25px auto 18px;
+            background: #ffe4ec;
+            color: #e75480;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #392747;
+            font-size: 25px;
+            margin-bottom: 9px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #96869e;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            color: #55445f;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 9px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #f0d9e4;
+            border-radius: 11px;
+            outline: none;
+            font-size: 14px;
+            margin-bottom: 21px;
+            background: #fffafd;
+            color: #392747;
+        }
+
+        input:focus {
+            border-color: #e75480;
+            box-shadow: 0 0 0 3px rgba(231, 84, 128, 0.12);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 11px;
+            background: linear-gradient(135deg, #e75480, #a34bc4);
+            color: white;
+            font-size: 15px;
+            font-weight: 650;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(231, 84, 128, 0.23);
+        }
+
+        .error-message {
+            background: #fff0f3;
+            color: #c03965;
+            padding: 12px;
+            border-radius: 9px;
+            font-size: 13px;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 24px;
+            color: #a34bc4;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: #e75480;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 28px;
+            color: #b5a5b5;
+            font-size: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 32px 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="logo">SkillBridge <span>AI</span></div>
+
+        <div class="admin-icon">🔐</div>
+
+        <h2>Admin Login</h2>
+
+        <p class="subtitle">
+            Welcome back! Sign in to access your administration dashboard.
+        </p>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="error-message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="email">Admin Email</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter admin email"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter admin password"
+                required
+            >
+
+            <button type="submit">
+                Login to Admin Dashboard →
+            </button>
+        </form>
+
+        <a href="{% url 'home' %}" class="back-link">
+            ← Back to Home
+        </a>
+
+        <div class="footer">
+            SkillBridge  · Learn Today, Grow Tomorrow
+        </div>
+
+    </div>
+
+</body>
+</html>

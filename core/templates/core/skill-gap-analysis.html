@@ -1,0 +1,210 @@
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #f8f5ff;
+        color: #30264a;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        margin: 0;
+    }
+
+    .gap-container {
+        max-width: 1050px;
+        margin: 35px auto;
+        padding: 25px;
+    }
+
+    .gap-header {
+        background: linear-gradient(120deg, #a855f7, #d946a6, #ec4899);
+        color: white;
+        padding: 38px;
+        border-radius: 22px;
+        margin-bottom: 28px;
+        box-shadow: 0 12px 30px rgba(168, 85, 247, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .gap-header h2 {
+        font-size: 30px;
+        font-weight: 750;
+        margin-bottom: 12px;
+    }
+
+    .gap-header p {
+        color: #fff0fa;
+        line-height: 1.8;
+        margin-bottom: 0;
+        max-width: 650px;
+        font-size: 15px;
+    }
+
+    .header-tag {
+        display: inline-block;
+        background: rgba(255,255,255,0.2);
+        border: 1px solid rgba(255,255,255,0.3);
+        padding: 7px 15px;
+        border-radius: 30px;
+        font-size: 12px;
+        margin-bottom: 17px;
+        letter-spacing: 0.5px;
+    }
+
+    .gap-card {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 18px;
+        margin-bottom: 24px;
+        border: 1px solid #f0e5ff;
+        box-shadow: 0 8px 25px rgba(113, 63, 150, 0.07);
+    }
+
+    .gap-card h4 {
+        color: #9138c9;
+        font-weight: 750;
+        margin-bottom: 25px;
+        font-size: 20px;
+    }
+
+    .score-info {
+        color: #766b88;
+        margin-bottom: 17px;
+        font-size: 15px;
+        background: #fbf8ff;
+        padding: 14px 16px;
+        border-radius: 10px;
+        border: 1px solid #f1e8fc;
+    }
+
+    .score-info strong {
+        color: #c13d9e;
+        margin-left: 5px;
+        font-weight: 700;
+    }
+
+    .analysis-content {
+        color: #514363;
+        line-height: 1.9;
+        white-space: pre-wrap;
+        font-size: 15px;
+        background: #fcf8ff;
+        border: 1px solid #f0e3fc;
+        padding: 25px;
+        border-radius: 13px;
+    }
+
+    .error-box {
+        background: #fff3f7;
+        color: #b83265;
+        border: 1px solid #ffd1e1;
+        padding: 22px;
+        border-radius: 13px;
+        margin-bottom: 22px;
+        line-height: 1.7;
+    }
+
+    .back-btn {
+        background: linear-gradient(135deg, #a855f7, #d946a6);
+        color: white;
+        padding: 13px 25px;
+        border-radius: 11px;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: 650;
+        transition: 0.2s ease;
+        box-shadow: 0 6px 16px rgba(168, 85, 247, 0.18);
+    }
+
+    .back-btn:hover {
+        background: linear-gradient(135deg, #9333ea, #c0268d);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 9px 20px rgba(168, 85, 247, 0.25);
+    }
+
+    @media (max-width: 576px) {
+        .gap-container {
+            padding: 16px;
+            margin: 18px auto;
+        }
+
+        .gap-header {
+            padding: 25px;
+        }
+
+        .gap-header h2 {
+            font-size: 24px;
+        }
+
+        .gap-card {
+            padding: 21px;
+        }
+
+        .analysis-content {
+            padding: 17px;
+        }
+    }
+</style>
+
+<div class="gap-container">
+
+    <div class="gap-header">
+        <span class="header-tag">✦ AI POWERED CAREER INSIGHTS</span>
+
+        <h2>AI Skill Gap Analysis</h2>
+
+        <p>
+            Discover your strengths and identify areas for improvement
+            with personalized AI-powered career guidance.
+        </p>
+    </div>
+
+    {% if assessment %}
+
+        <div class="gap-card">
+            <h4>📊 Your Latest Assessment</h4>
+
+            <p class="score-info">
+                Overall Level:
+                <strong>{{ assessment.level }}</strong>
+            </p>
+
+            <p class="score-info">
+                Average Score:
+                <strong>{{ assessment.average_score|floatformat:2 }} / 5</strong>
+            </p>
+
+            <p class="score-info">
+                Assessment Date:
+                <strong>{{ assessment.created_at|date:"d M Y, h:i A" }}</strong>
+            </p>
+        </div>
+
+    {% endif %}
+
+    {% if error_message %}
+
+        <div class="error-box">
+            <strong>⚠ Analysis Notice</strong>
+            <p class="mb-0 mt-2">{{ error_message }}</p>
+        </div>
+
+    {% elif analysis %}
+
+        <div class="gap-card">
+            <h4>✨ AI Analysis Report</h4>
+
+            <div class="analysis-content">{{ analysis }}</div>
+        </div>
+
+    {% endif %}
+
+    <div class="mt-4">
+        <a href="{% url 'dashboard' %}" class="back-btn">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+</div>

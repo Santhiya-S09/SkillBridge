@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 5 - Git, Portfolio & Interview Prep | SkillBridge </title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f5ff;
+            color: #383047;
+            line-height: 1.7;
+        }
+
+        .header {
+            background: linear-gradient(120deg, #773bd0, #a044c6, #e17ab8);
+            padding: 35px 8%;
+            color: white;
+        }
+
+        .header a {
+            color: #fff0fb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .header h1 {
+            margin-top: 18px;
+            font-size: 30px;
+        }
+
+        .header p {
+            color: #fff0fb;
+            margin-top: 8px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #eee5fb;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 22px;
+            box-shadow: 0 5px 20px rgba(105, 59, 160, 0.07);
+        }
+
+        h2 {
+            color: #7136bd;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #9848b7;
+            margin: 18px 0 8px;
+        }
+
+        p, li {
+            color: #625a70;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        pre {
+            background: #302344;
+            color: #f0e6ff;
+            border: 1px solid #57406f;
+            border-radius: 10px;
+            padding: 17px;
+            overflow-x: auto;
+            margin: 12px 0;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .note {
+            background: #f7efff;
+            border-left: 4px solid #a34ac7;
+            padding: 14px;
+            border-radius: 8px;
+            margin-top: 14px;
+        }
+
+        .question {
+            margin: 18px 0;
+            padding: 17px;
+            background: #faf5ff;
+            border: 1px solid #eee0fb;
+            border-radius: 10px;
+        }
+
+        .question label {
+            display: block;
+            margin: 9px 0;
+            color: #554b65;
+            cursor: pointer;
+        }
+
+        .question input {
+            accent-color: #9144c4;
+            margin-right: 7px;
+        }
+
+        button {
+            background: linear-gradient(120deg, #773bd0, #c04eae);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 12px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 14px rgba(119, 59, 208, 0.25);
+        }
+
+        #quizResult {
+            display: none;
+            margin-top: 22px;
+            padding: 16px;
+            background: #f2eaff;
+            border: 1px solid #dfcafa;
+            border-radius: 10px;
+            color: #7136bd;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .footer {
+            text-align: center;
+            color: #887c98;
+            padding: 25px;
+        }
+
+        code {
+            color: #a044b8;
+            font-weight: 600;
+        }
+
+        .completion-panel {
+            border: 1px solid #dfcafa;
+            background: linear-gradient(135deg, #ffffff, #f8efff);
+            text-align: center;
+        }
+
+        .completion-panel h2 {
+            color: #7838bd;
+        }
+
+        .completed-message {
+            background: #edfff5;
+            border: 1px solid #b9e8ce;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 18px 0;
+        }
+
+        .completed-message h3 {
+            color: #23834e;
+            margin-top: 0;
+        }
+
+        .completed-message p {
+            color: #397653;
+        }
+
+        .completion-panel button {
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 28px 6%;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .container {
+                padding: 0 14px;
+            }
+
+            .card {
+                padding: 19px;
+            }
+
+            pre {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <a href="{% url 'learning_roadmap' %}">← Back to Learning Roadmap</a>
+
+    <h1>Step 5: Git, Portfolio & Interview Preparation</h1>
+
+    <p>Build your professional profile and prepare for Python Developer opportunities.</p>
+</header>
+
+<main class="container">
+
+    <section class="card">
+        <h2>1. Introduction</h2>
+
+        <p>
+            Learning programming is only one part of becoming a developer.
+            You should also know how to manage your code, present your projects
+            and explain your skills during interviews.
+        </p>
+
+        <h3>What You Will Learn</h3>
+
+        <ul>
+            <li>Git and GitHub fundamentals.</li>
+            <li>Uploading projects to GitHub.</li>
+            <li>Creating a professional portfolio.</li>
+            <li>Preparing a fresher resume.</li>
+            <li>Practising Python Developer interview questions.</li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>2. Learn Git Fundamentals</h2>
+
+        <p>
+            Git is a version control system. It helps developers track
+            code changes and manage different versions of a project.
+        </p>
+
+        <h3>Important Git Commands</h3>
+
+        <pre>git --version
+
+git init
+
+git status
+
+git add .
+
+git commit -m "Initial project commit"
+
+git log</pre>
+
+        <h3>What These Commands Do</h3>
+
+        <ul>
+            <li><strong>git init:</strong> Starts Git tracking in a project folder.</li>
+            <li><strong>git status:</strong> Shows changed files.</li>
+            <li><strong>git add .:</strong> Stages project changes.</li>
+            <li><strong>git commit:</strong> Saves a version of your changes.</li>
+            <li><strong>git log:</strong> Displays previous commits.</li>
+        </ul>
+
+        <div class="note">
+            <strong>Remember:</strong> A commit is a saved checkpoint
+            of your project changes.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>3. Understand GitHub</h2>
+
+        <p>
+            GitHub is an online platform where developers store and share
+            Git repositories. It also helps teams collaborate on projects.
+        </p>
+
+        <h3>Steps to Upload a Project</h3>
+
+        <ol>
+            <li>Create a GitHub account.</li>
+            <li>Create a new repository.</li>
+            <li>Open your project folder in the terminal.</li>
+            <li>Initialize Git and commit your project files.</li>
+            <li>Connect your local repository to your GitHub repository.</li>
+            <li>Push your project to GitHub.</li>
+        </ol>
+
+        <h3>Example Commands</h3>
+
+        <pre>git init
+git add .
+git commit -m "My first project"
+
+git branch -M main
+
+git remote add origin YOUR_REPOSITORY_URL
+
+git push -u origin main</pre>
+
+        <div class="note">
+            Replace YOUR_REPOSITORY_URL with your own GitHub repository URL.
+            Never upload passwords, API keys or private credentials.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>4. Create a Professional Portfolio</h2>
+
+        <p>
+            A portfolio is a collection of your skills, projects and
+            achievements. It helps employers understand what you can build.
+        </p>
+
+        <h3>Important Portfolio Sections</h3>
+
+        <ul>
+            <li><strong>About Me:</strong> A short professional introduction.</li>
+            <li><strong>Skills:</strong> Python, Django, SQL, HTML and CSS.</li>
+            <li><strong>Projects:</strong> Project descriptions and GitHub links.</li>
+            <li><strong>Education:</strong> Degree and relevant courses.</li>
+            <li><strong>Contact:</strong> Professional email and relevant links.</li>
+        </ul>
+
+        <h3>Project Description Example</h3>
+
+        <pre>Project Name: SkillBridge
+
+Technology:
+Python, Django, MySQL, HTML, CSS, JavaScript
+
+Description:
+An AI-powered career and skill development platform
+that helps learners explore career paths and follow
+personalized learning roadmaps.</pre>
+    </section>
+
+    <section class="card">
+        <h2>5. Prepare Your Fresher Resume</h2>
+
+        <p>
+            A resume is a short document that presents your education,
+            technical skills, projects and relevant experience.
+        </p>
+
+        <h3>Resume Structure</h3>
+
+        <ol>
+            <li>Name and contact information.</li>
+            <li>Career objective.</li>
+            <li>Educational qualification.</li>
+            <li>Technical skills.</li>
+            <li>Academic or personal projects.</li>
+            <li>Certifications.</li>
+        </ol>
+
+        <h3>Sample Career Objective</h3>
+
+        <div class="note">
+            A motivated IT graduate seeking an entry-level Python Developer
+            opportunity to apply programming knowledge, improve technical
+            skills and contribute to real-world projects.
+        </div>
+
+        <h3>Resume Tips</h3>
+
+        <ul>
+            <li>Use clear and simple language.</li>
+            <li>Keep information accurate.</li>
+            <li>Highlight skills relevant to the job.</li>
+            <li>Include genuine project work.</li>
+            <li>Check spelling and formatting before sharing.</li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>6. Python Developer Interview Preparation</h2>
+
+        <p>
+            Practise explaining programming concepts in your own words.
+            Understanding is more important than memorising answers.
+        </p>
+
+        <h3>Basic Python Questions</h3>
+
+        <ol>
+            <li>What is Python?</li>
+            <li>What are variables in Python?</li>
+            <li>What is the difference between a list and a tuple?</li>
+            <li>What is a dictionary?</li>
+            <li>What is a function?</li>
+            <li>What is object-oriented programming?</li>
+        </ol>
+
+        <h3>Django Questions</h3>
+
+        <ol>
+            <li>What is Django?</li>
+            <li>What is the MVT architecture?</li>
+            <li>What is a Django model?</li>
+            <li>What is the purpose of views.py?</li>
+            <li>What is the use of urls.py?</li>
+            <li>What are Django migrations?</li>
+        </ol>
+
+        <h3>Database Questions</h3>
+
+        <ol>
+            <li>What is a database?</li>
+            <li>What is SQL?</li>
+            <li>What is a primary key?</li>
+            <li>What is a foreign key?</li>
+            <li>What is the difference between DELETE and UPDATE?</li>
+        </ol>
+
+        <div class="note">
+            <strong>Interview Tip:</strong>
+            Practise explaining one project from beginning to end:
+            its purpose, technologies, features and your contribution.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>7. Practical Activities</h2>
+
+        <ol>
+            <li>Create a Git repository for one of your projects.</li>
+            <li>Write a README file explaining your project.</li>
+            <li>Upload your project to GitHub.</li>
+            <li>Prepare a one-page fresher resume.</li>
+            <li>Create a simple portfolio webpage.</li>
+            <li>Practise answering five Python interview questions.</li>
+        </ol>
+    </section>
+
+    <section class="card">
+        <h2>8. Final Career Readiness Checklist</h2>
+
+        <p>Check your preparation progress:</p>
+
+        <ul>
+            <li>Understand basic Git commands.</li>
+            <li>Know how to create a GitHub repository.</li>
+            <li>Have at least one project ready to present.</li>
+            <li>Prepare a professional resume.</li>
+            <li>Practise technical interview questions.</li>
+            <li>Be able to explain your project confidently.</li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>9. Knowledge Check</h2>
+
+        <p>Answer these questions to check your understanding.</p>
+
+        <form id="quizForm">
+
+            <div class="question">
+                <p><strong>1. What is Git?</strong></p>
+
+                <label><input type="radio" name="q1" value="a"> A database</label>
+                <label><input type="radio" name="q1" value="b"> A version control system</label>
+                <label><input type="radio" name="q1" value="c"> A programming language</label>
+            </div>
+
+            <div class="question">
+                <p><strong>2. Which command stages project changes?</strong></p>
+
+                <label><input type="radio" name="q2" value="a"> git add .</label>
+                <label><input type="radio" name="q2" value="b"> git log</label>
+                <label><input type="radio" name="q2" value="c"> git init</label>
+            </div>
+
+            <div class="question">
+                <p><strong>3. What is GitHub mainly used for?</strong></p>
+
+                <label><input type="radio" name="q3" value="a"> Editing photos</label>
+                <label><input type="radio" name="q3" value="b"> Playing games</label>
+                <label><input type="radio" name="q3" value="c"> Hosting and sharing code repositories</label>
+            </div>
+
+            <div class="question">
+                <p><strong>4. What does a professional resume contain?</strong></p>
+
+                <label><input type="radio" name="q4" value="a"> Only hobbies</label>
+                <label><input type="radio" name="q4" value="b"> Education, skills and relevant projects</label>
+                <label><input type="radio" name="q4" value="c"> Only personal photographs</label>
+            </div>
+
+            <div class="question">
+                <p><strong>5. What should you explain during a project interview?</strong></p>
+
+                <label><input type="radio" name="q5" value="a"> Project purpose, technologies and features</label>
+                <label><input type="radio" name="q5" value="b"> Only the project name</label>
+                <label><input type="radio" name="q5" value="c"> Nothing about the project</label>
+            </div>
+
+            <button type="button" onclick="checkQuiz()">
+                Submit Answers
+            </button>
+
+            <div id="quizResult"></div>
+
+        </form>
+    </section>
+
+    <!-- LESSON COMPLETION SECTION -->
+
+    <section class="card completion-panel">
+
+        <h2>Lesson Completion</h2>
+
+        {% if is_completed %}
+
+            <div class="completed-message">
+                <h3>✓ Lesson Completed!</h3>
+                <p>You have successfully completed this lesson.</p>
+                <p>Your progress has been saved successfully.</p>
+            </div>
+
+            <button type="button"
+                onclick="window.location.href='{% url 'learning_roadmap' %}'">
+                Back to Learning Roadmap
+            </button>
+
+        {% else %}
+
+            <p>
+                Finished learning and practising this lesson?
+                Mark it as completed to save your progress.
+            </p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <input type="hidden"
+                       name="action"
+                       value="complete_lesson">
+
+                <button type="submit">
+                    ✓ Mark Lesson as Completed
+                </button>
+            </form>
+
+        {% endif %}
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    SkillBridge | Learn • Practice • Grow
+</footer>
+
+<script>
+    function checkQuiz() {
+
+        const answers = {
+            q1: "b",
+            q2: "a",
+            q3: "c",
+            q4: "b",
+            q5: "a"
+        };
+
+        let score = 0;
+
+        for (let question in answers) {
+
+            const selected = document.querySelector(
+                'input[name="' + question + '"]:checked'
+            );
+
+            if (!selected) {
+
+                const result = document.getElementById("quizResult");
+
+                result.textContent =
+                    "Please answer all 5 questions before submitting!";
+
+                result.style.color = "#a044b8";
+                result.style.display = "block";
+
+                return;
+            }
+
+            if (selected.value === answers[question]) {
+                score++;
+            }
+        }
+
+        const result = document.getElementById("quizResult");
+
+        let feedback = "";
+
+        if (score === 5) {
+            feedback = "Excellent! You have mastered this lesson.";
+        } else if (score === 4) {
+            feedback = "Very Good! You have a good understanding.";
+        } else if (score === 3) {
+            feedback = "Good effort! Keep practising to improve.";
+        } else {
+            feedback = "Keep practising! Revise the lesson and try again.";
+        }
+
+        result.innerHTML =
+            "🎉 Your Score: " + score + " / 5" +
+            "<br>" + feedback;
+
+        result.style.color = "#7136bd";
+        result.style.display = "block";
+
+        result.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Guidance | SkillBridge </title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+--purple:#7041c8;
+--deep-purple:#4c287f;
+--pink:#e967a8;
+--lavender:#f4edff;
+--bg:#faf8ff;
+--card:#ffffff;
+--text:#35264e;
+--muted:#8d829e;
+--border:#eee6f7;
+}
+
+body{
+font-family:Inter,Arial,sans-serif;
+background:var(--bg);
+color:var(--text)
+}
+
+a{text-decoration:none;color:inherit}
+.app{display:flex;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{
+width:245px;flex-shrink:0;
+background:linear-gradient(180deg,#56318e,#40216f);
+color:white;padding:28px 17px;
+display:flex;flex-direction:column
+}
+
+.brand{
+font-size:21px;font-weight:800;
+padding:5px 12px;margin-bottom:45px
+}
+
+.brand span{color:#ff9dcc}
+
+.side-label{
+font-size:9px;letter-spacing:1.5px;
+color:#c4addf;padding:0 13px;margin:15px 0
+}
+
+.sidebar a{
+display:flex;align-items:center;gap:12px;
+padding:13px 14px;margin-bottom:6px;
+border-radius:10px;color:#e1d5f1;
+font-size:12px;font-weight:600;
+transition:.2s
+}
+
+.sidebar a:hover{
+background:#ffffff18;color:white
+}
+
+.sidebar a.active{
+background:linear-gradient(100deg,#ed68aa,#a56be9);
+color:white;
+box-shadow:0 7px 18px #24103c45
+}
+
+.nav-icon{width:20px;text-align:center;font-size:17px}
+
+.sidebar-bottom{
+margin-top:auto;padding:17px;
+border:1px solid #ffffff30;
+border-radius:13px;background:#ffffff12
+}
+
+.sidebar-bottom h4{
+font-size:12px;margin-bottom:8px;color:#ffe1f0
+}
+
+.sidebar-bottom p{
+font-size:10px;line-height:1.8;color:#e0d4ee
+}
+
+/* MAIN */
+.main{flex:1;min-width:0}
+
+.topbar{
+height:76px;padding:0 38px;
+background:white;
+border-bottom:1px solid var(--border);
+display:flex;align-items:center;justify-content:space-between
+}
+
+.topbar h3{font-size:15px;color:var(--text)}
+
+.topbar small{
+display:block;color:var(--muted);
+font-size:10px;margin-top:5px
+}
+
+.profile{
+font-size:11px;color:#a04caa;font-weight:700;
+background:#f7edff;padding:10px 15px;border-radius:30px;
+border:1px solid #ead9fa
+}
+
+.content{
+max-width:1180px;margin:auto;
+padding:32px 38px 45px
+}
+
+/* HERO */
+.hero{
+padding:36px 38px;border-radius:20px;
+margin-bottom:25px;
+background:linear-gradient(115deg,#5d35a1,#9254c8 58%,#e66da9);
+position:relative;overflow:hidden;
+box-shadow:0 12px 30px #7541a526
+}
+
+.hero:after{
+content:"✦";position:absolute;right:45px;top:-45px;
+font-size:180px;color:#ffffff18
+}
+
+.hero-content{position:relative;z-index:1}
+
+.hero-tag{
+display:inline-block;background:#ffffff20;
+color:white;padding:8px 13px;
+border-radius:30px;font-size:9px;
+font-weight:800;letter-spacing:1px;margin-bottom:16px;
+border:1px solid #ffffff35
+}
+
+.hero h1{
+font-size:clamp(25px,3vw,34px);
+letter-spacing:-1px;margin-bottom:12px;color:white
+}
+
+.hero h1 span{color:#ffd1e8}
+
+.hero p{
+font-size:12px;color:#f5eaff;
+line-height:1.9;max-width:630px
+}
+
+/* FORM */
+.form-card,.result-card{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:18px;padding:28px;
+margin-bottom:24px;
+box-shadow:0 7px 25px #4e28780a
+}
+
+.section-heading{
+display:flex;align-items:center;gap:12px;margin-bottom:8px
+}
+
+.heading-icon{
+width:43px;height:43px;display:grid;place-items:center;
+background:#f2eaff;color:#9a59c5;
+border-radius:12px;font-size:20px
+}
+
+.form-card h2,.result-card h2{font-size:17px;color:var(--text)}
+
+.subtext{
+font-size:11px;color:var(--muted);
+line-height:1.8;margin:10px 0 22px
+}
+
+.form-grid{
+display:grid;grid-template-columns:1fr 1fr;gap:8px 22px
+}
+
+.field{min-width:0}
+
+label{
+display:block;font-size:11px;font-weight:700;
+color:#59476e;margin:17px 0 9px
+}
+
+.label-hint{color:#a69bb3;font-weight:400;margin-left:5px}
+
+input,textarea,select{
+width:100%;padding:14px 15px;
+background:#fcfaff;
+border:1px solid #e9def4;
+border-radius:10px;color:#49365f;
+font-size:11px;font-family:Inter,Arial,sans-serif;
+outline:none;transition:.2s
+}
+
+input:focus,textarea:focus,select:focus{
+border-color:var(--pink);
+box-shadow:0 0 0 3px #ed68aa1c;
+background:white
+}
+
+textarea{
+min-height:100px;resize:vertical;line-height:1.7
+}
+
+input::placeholder,textarea::placeholder{color:#b0a5bc}
+
+select option{background:white;color:#49365f}
+
+.submit-btn{
+width:100%;margin-top:23px;padding:15px;
+border:0;border-radius:10px;
+background:linear-gradient(100deg,#7041c8,#e568aa);
+color:white;font-size:12px;
+font-weight:800;cursor:pointer;transition:.2s;
+box-shadow:0 6px 15px #a34fa526
+}
+
+.submit-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 20px #a34fa544
+}
+
+.form-note{
+text-align:center;color:#a397b2;
+font-size:9px;margin-top:13px
+}
+
+/* RESULT */
+.result-card{
+border-top:3px solid var(--pink);
+padding:30px
+}
+
+.result-heading{
+display:flex;align-items:center;
+gap:13px;margin-bottom:20px
+}
+
+.result-icon{
+width:43px;height:43px;
+display:grid;place-items:center;
+background:#e9f8ef;color:#40a778;
+border-radius:12px;font-size:20px
+}
+
+.result-badge{
+display:inline-block;padding:8px 13px;
+background:#f1eaff;color:#8650b7;
+border-radius:20px;font-size:9px;
+font-weight:800;margin-bottom:20px;letter-spacing:.5px
+}
+
+/* CAREER DETAILS */
+.profile-grid{
+display:grid;grid-template-columns:1fr 1fr;
+gap:13px;margin-bottom:25px
+}
+
+.profile-item{
+padding:16px;border:1px solid var(--border);
+border-radius:12px;background:#fcfaff;min-width:0
+}
+
+.profile-item span{
+display:block;font-size:9px;font-weight:700;
+color:#a18eaf;text-transform:uppercase;
+letter-spacing:.7px;margin-bottom:8px
+}
+
+.profile-item strong{
+font-size:12px;line-height:1.7;
+color:#9854b4;overflow-wrap:anywhere
+}
+
+/* ROADMAP */
+.roadmap-header{
+display:flex;align-items:center;
+justify-content:space-between;gap:10px;
+flex-wrap:wrap;margin-bottom:8px
+}
+
+.roadmap-header h3{font-size:16px;color:#49345f}
+
+.step-count{
+font-size:9px;font-weight:800;
+color:#a04eae;background:#f5eaff;
+padding:8px 12px;border-radius:20px
+}
+
+.roadmap-description{
+font-size:10px;color:var(--muted);
+line-height:1.8;margin-bottom:20px
+}
+
+.roadmap-list{
+display:flex;flex-direction:column;gap:13px
+}
+
+.roadmap-step{
+display:flex;align-items:center;gap:15px;
+padding:17px;background:#fcfaff;
+border:1px solid var(--border);
+border-radius:13px;transition:.2s
+}
+
+.roadmap-step:hover{
+background:#faf4ff;border-color:#d9c3ef;
+transform:translateX(3px)
+}
+
+.step-number{
+width:40px;height:40px;flex-shrink:0;
+display:grid;place-items:center;
+background:linear-gradient(135deg,#7041c8,#df68a8);
+color:white;border-radius:12px;
+font-size:13px;font-weight:800
+}
+
+.step-content{flex:1;min-width:0}
+
+.step-content small{
+display:block;font-size:9px;font-weight:800;
+color:#a18eaf;text-transform:uppercase;
+letter-spacing:.7px;margin-bottom:5px
+}
+
+.step-content p{
+font-size:11px;line-height:1.8;
+color:#5c4b70;margin:0
+}
+
+.step-arrow{color:#d75e9e;font-size:18px}
+
+.result-divider{
+height:1px;background:var(--border);margin:25px 0
+}
+
+/* ERROR */
+.error-card{border-top-color:#e97979}
+
+.error-card .result-icon{
+background:#fff0f0;color:#d85c6b
+}
+
+.error-card p{
+font-size:11px;color:#c95768;line-height:1.8
+}
+
+/* FOOTER */
+.footer{
+text-align:center;padding:22px;
+border-top:1px solid var(--border);
+font-size:9px;color:#a397b2
+}
+
+.footer strong{color:#a052bd}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+.sidebar{width:220px}
+.content{padding:25px 20px}
+.topbar{padding:0 20px}
+}
+
+@media(max-width:700px){
+.app{display:block}
+.sidebar{width:100%;padding:17px}
+.brand{margin-bottom:15px}
+.side-label,.sidebar-bottom{display:none}
+.sidebar a{
+display:inline-flex;padding:9px;
+margin:3px;font-size:10px
+}
+.topbar{height:auto;min-height:65px;padding:13px 15px}
+.content{padding:20px 14px}
+.hero{padding:26px 22px}
+.hero:after{display:none}
+.form-card,.result-card{padding:20px}
+.form-grid,.profile-grid{grid-template-columns:1fr}
+.roadmap-step{padding:13px;gap:10px}
+}
+
+@media(prefers-reduced-motion:reduce){
+*,*::before,*::after{
+animation:none!important;
+transition:none!important;
+scroll-behavior:auto!important
+}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<aside class="sidebar">
+    <div class="brand">✦ SkillBridge <span>AI</span></div>
+
+    <div class="side-label">WORKSPACE</div>
+
+    <a href="{% url 'dashboard' %}">
+        <span class="nav-icon">▦</span> Dashboard
+    </a>
+
+    <a href="{% url 'career_guidance' %}" class="active">
+        <span class="nav-icon">◎</span> Career Guidance
+    </a>
+
+    <a href="{% url 'skill_assessment' %}">
+        <span class="nav-icon">◇</span> Skill Assessment
+    </a>
+
+    <a href="{% url 'assessment_history' %}">
+        <span class="nav-icon">◷</span> Assessment History
+    </a>
+
+    <a href="{% url 'skill_gap_analysis' %}">
+        <span class="nav-icon">✦</span> AI Skill Gap Analysis
+    </a>
+
+    <a href="{% url 'learning_roadmap' %}">
+        <span class="nav-icon">↗</span> Learning Roadmap
+    </a>
+
+    <div class="side-label">ACCOUNT</div>
+
+    <a href="{% url 'logout' %}">
+        <span class="nav-icon">↗</span> Logout
+    </a>
+
+    <div class="sidebar-bottom">
+        <h4>✦ Keep Growing</h4>
+        <p>Your next career opportunity begins with the skills you build today.</p>
+    </div>
+</aside>
+
+<div class="main">
+
+<header class="topbar">
+    <div>
+        <h3>Career Guidance</h3>
+        <small>Discover opportunities that match your goals</small>
+    </div>
+    <div class="profile">Welcome, {{ request.user.username }}</div>
+</header>
+
+<main class="content">
+
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-tag">✦ YOUR CAREER ASSISTANT</span>
+        <h1>Discover Your <span>Career Path</span> 🎯</h1>
+        <p>
+            Tell us about your interests, skills and goals.
+            Explore suitable career opportunities and build
+            your personalized learning journey.
+        </p>
+    </div>
+</section>
+
+<section class="form-card">
+    <div class="section-heading">
+        <div class="heading-icon">✧</div>
+        <h2>Build Your Career Profile</h2>
+    </div>
+
+    <p class="subtext">
+        Share a little about yourself to explore career
+        recommendations based on your background and ambitions.
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-grid">
+
+            <div class="field">
+                <label for="interests">
+                    Your Interests <span class="label-hint">What do you enjoy?</span>
+                </label>
+                <textarea id="interests" name="interests" placeholder="Example: Web development, AI, designing" required>{{ interests|default:"" }}</textarea>
+            </div>
+
+            <div class="field">
+                <label for="skills">
+                    Your Current Skills <span class="label-hint">What do you know?</span>
+                </label>
+                <textarea id="skills" name="skills" placeholder="Example: Python, HTML, CSS, SQL" required>{{ skills|default:"" }}</textarea>
+            </div>
+
+            <div class="field">
+                <label for="education">Your Education</label>
+                <input type="text" id="education" name="education" placeholder="Example: B.Sc IT" value="{{ education|default:'' }}" required>
+            </div>
+
+            <div class="field">
+                <label for="goal">Your Career Goal</label>
+                <select id="goal" name="goal" required>
+                    <option value="">Choose your goal</option>
+                    <option value="Python Developer" {% if goal == "Python Developer" %}selected{% endif %}>Python Developer</option>
+                    <option value="Web Developer" {% if goal == "Web Developer" %}selected{% endif %}>Web Developer</option>
+                    <option value="Data Analyst" {% if goal == "Data Analyst" %}selected{% endif %}>Data Analyst</option>
+                    <option value="AI Engineer" {% if goal == "AI Engineer" %}selected{% endif %}>AI Engineer</option>
+                    <option value="Not Sure" {% if goal == "Not Sure" %}selected{% endif %}>Not Sure Yet</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button type="submit" class="submit-btn">
+            ✦ Get My Career Guidance →
+        </button>
+
+        <p class="form-note">
+            Your information helps personalize your career recommendations.
+        </p>
+    </form>
+</section>
+
+{% if error_message %}
+<section class="result-card error-card">
+    <div class="result-heading">
+        <div class="result-icon">⚠️</div>
+        <h2>Career Guidance Notice</h2>
+    </div>
+    <p>{{ error_message }}</p>
+</section>
+{% endif %}
+
+{% if suggestions %}
+<section class="result-card">
+
+    <div class="result-heading">
+        <div class="result-icon">✓</div>
+        <h2>Your Career Guidance Results</h2>
+    </div>
+
+    <span class="result-badge">✓ CAREER PROFILE GENERATED</span>
+
+    <div class="profile-grid">
+
+        <div class="profile-item">
+            <span>✦ Your Interests</span>
+            <strong>{{ interests }}</strong>
+        </div>
+
+        <div class="profile-item">
+            <span>◇ Current Skills</span>
+            <strong>{{ skills }}</strong>
+        </div>
+
+        <div class="profile-item">
+            <span>▦ Education</span>
+            <strong>{{ education }}</strong>
+        </div>
+
+        <div class="profile-item">
+            <span>◎ Career Goal</span>
+            <strong>{{ goal }}</strong>
+        </div>
+
+    </div>
+
+    <div class="result-divider"></div>
+
+    <div class="roadmap-header">
+        <h3>✧ Recommended Learning Roadmap</h3>
+        <span class="step-count">5 LEARNING STEPS</span>
+    </div>
+
+    <p class="roadmap-description">
+        Follow these learning steps to gradually develop the skills
+        needed for your selected career path.
+    </p>
+
+    <div class="roadmap-list">
+        {% for suggestion in suggestions %}
+        <div class="roadmap-step">
+            <div class="step-number">{{ forloop.counter|stringformat:"02d" }}</div>
+            <div class="step-content">
+                <small>Learning Step {{ forloop.counter }}</small>
+                <p>{{ suggestion }}</p>
+            </div>
+            <div class="step-arrow">→</div>
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+{% endif %}
+
+</main>
+
+<footer class="footer">
+    © 2026 <strong>SkillBridge </strong> · Your Career Growth Starts Here
+</footer>
+
+</div>
+</div>
+</body>
+</html>

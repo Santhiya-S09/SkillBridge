@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ lesson.title }} | SkillBridge </title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f8f5ff;
+            color: #38304a;
+            line-height: 1.7;
+        }
+
+        header {
+            background: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee5fa;
+            box-shadow: 0 3px 15px rgba(100,60,150,.05);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #713ac5;
+        }
+
+        header a {
+            color: #9b43b8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        main {
+            max-width: 1050px;
+            margin: 35px auto;
+            padding: 0 22px;
+        }
+
+        .hero {
+            background: linear-gradient(120deg,#773bd0,#a044c6,#e17ab8);
+            padding: 38px;
+            border-radius: 22px;
+            margin-bottom: 28px;
+            color: white;
+            box-shadow: 0 12px 30px rgba(139,65,190,.18);
+        }
+
+        .hero span {
+            color: #f6e7ff;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin: 12px 0;
+        }
+
+        .hero p {
+            color: #fff0ff;
+        }
+
+        .info {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .info div {
+            background: rgba(255,255,255,.17);
+            padding: 9px 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: white;
+            border: 1px solid rgba(255,255,255,.15);
+        }
+
+        .panel {
+            background: white;
+            border: 1px solid #eee4fa;
+            border-radius: 17px;
+            padding: 27px;
+            margin-bottom: 23px;
+            box-shadow: 0 5px 20px rgba(111,65,160,.06);
+        }
+
+        h2 {
+            color: #793fc1;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #59318d;
+            margin: 18px 0 9px;
+        }
+
+        p {
+            color: #70677e;
+            margin-bottom: 12px;
+        }
+
+        .topic {
+            border-left: 3px solid #bd69d7;
+            padding-left: 18px;
+            margin: 25px 0;
+        }
+
+        .tamil {
+            background: #faf3ff;
+            border: 1px solid #ead9f8;
+            padding: 13px 16px;
+            border-radius: 10px;
+            color: #694b83;
+            margin: 12px 0;
+        }
+
+        pre {
+            background: #302344;
+            color: #f3d8ff;
+            padding: 18px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 13px 0;
+            border: 1px solid #49345e;
+            white-space: pre-wrap;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .note {
+            background: #fff2f8;
+            border: 1px solid #f4d2e5;
+            padding: 14px;
+            border-radius: 9px;
+            color: #9b477a;
+            margin: 12px 0;
+        }
+
+        .practice {
+            background: #faf5ff;
+            border: 1px solid #eee1fa;
+            padding: 17px;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+
+        .practice li {
+            color: #655875;
+            margin: 8px 0 8px 20px;
+        }
+
+        .quiz-question {
+            background: #fcf8ff;
+            border: 1px solid #eadcf7;
+            padding: 17px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .quiz-question label {
+            display: block;
+            color: #655875;
+            margin: 9px 0;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            accent-color: #934bc9;
+            margin-right: 8px;
+        }
+
+        button {
+            background: linear-gradient(135deg,#773bd0,#c04cae);
+            color: white;
+            border: none;
+            border-radius: 9px;
+            padding: 13px 22px;
+            font-size: 14px;
+            font-weight: 650;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: .3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 14px rgba(140,65,180,.22);
+        }
+
+        #quiz-result {
+            margin-top: 15px;
+            color: #843bb0;
+            font-weight: bold;
+        }
+
+        .completion-panel {
+            text-align: center;
+            border: 1px solid #e7d5f5;
+            background: linear-gradient(135deg,#fff,#fcf5ff);
+        }
+
+        .completed-message {
+            background: #f0fff7;
+            border: 1px solid #bce8d0;
+            padding: 18px;
+            border-radius: 10px;
+            color: #32835c;
+            margin: 15px 0;
+        }
+
+        .completed-message h3 {
+            color: #32835c;
+            margin-top: 0;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            border: 1px solid #8950d1;
+            color: #713bd1;
+            padding: 11px 20px;
+            border-radius: 9px;
+            text-decoration: none;
+        }
+
+        .bottom-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #9588a6;
+            border-top: 1px solid #eee4fa;
+            background: white;
+        }
+
+        @media(max-width:600px) {
+            header {
+                padding: 16px 5%;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .hero {
+                padding: 24px;
+            }
+
+            .hero h1 {
+                font-size: 25px;
+            }
+
+            .panel {
+                padding: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">✦ SkillBridge </div>
+    <a href="{% url 'learning_roadmap' %}?goal={{ career_goal|urlencode }}">
+        ← Back to Roadmap
+    </a>
+</header>
+
+<main>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <span>
+            {{ career_goal|upper }} · STEP {{ step_number|stringformat:"02d" }}
+        </span>
+
+        <h1>{{ lesson.title }}</h1>
+
+        <p>{{ lesson.objective }}</p>
+
+        <div class="info">
+            <div>📘 Beginner Level</div>
+            <div>⏱️ Learning Module</div>
+            <div>💻 Practical Learning</div>
+        </div>
+
+    </section>
+
+    <!-- LEARNING OBJECTIVES -->
+    <section class="panel">
+
+        <h2>What You Will Learn</h2>
+
+        <p>After completing this lesson, you will understand:</p>
+
+        <ul class="practice">
+            {% for topic in lesson.topics %}
+                <li>{{ topic }}</li>
+            {% endfor %}
+        </ul>
+
+    </section>
+
+    <!-- DETAILED TOPICS -->
+    <section class="panel">
+
+        <h2>Learning Module</h2>
+
+        {% if lesson.sections %}
+
+            {% for section in lesson.sections %}
+
+                <div class="topic">
+
+                    <h3>
+                        {{ forloop.counter }}. {{ section.title }}
+                    </h3>
+
+                    <p>{{ section.explanation }}</p>
+
+                    {% if section.tamil %}
+                        <div class="tamil">
+                            <strong>Simple Tamil Meaning:</strong><br>
+                            {{ section.tamil }}
+                        </div>
+                    {% endif %}
+
+                    {% if section.example %}
+                        <h3>Example</h3>
+                        <pre><code>{{ section.example }}</code></pre>
+                    {% endif %}
+
+                    {% if section.output %}
+                        <p><strong>Output:</strong></p>
+                        <pre><code>{{ section.output }}</code></pre>
+                    {% endif %}
+
+                    {% if section.note %}
+                        <div class="note">
+                            <strong>Explanation:</strong>
+                            {{ section.note }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            {% for topic in lesson.topics %}
+                <div class="topic">
+                    <h3>{{ forloop.counter }}. {{ topic }}</h3>
+                    <p>
+                        This topic is an important part of
+                        {{ career_goal }} learning. Understand the
+                        concept and practise it with a small example.
+                    </p>
+                </div>
+            {% endfor %}
+
+        {% endif %}
+
+    </section>
+
+    <!-- PRACTICE EXERCISES -->
+    <section class="panel">
+
+        <h2>Practice Exercises</h2>
+
+        <p>Try these activities to improve your practical knowledge.</p>
+
+        <div class="practice">
+            <strong>Try it yourself:</strong>
+
+            <p class="mt-2 mb-0">{{ lesson.practice }}</p>
+
+            {% if lesson.exercises %}
+                <ol>
+                    {% for exercise in lesson.exercises %}
+                        <li>{{ exercise }}</li>
+                    {% endfor %}
+                </ol>
+            {% endif %}
+        </div>
+
+    </section>
+
+    <!-- KNOWLEDGE CHECK -->
+    <section class="panel">
+
+        <h2>Knowledge Check – Quiz</h2>
+
+        {% if lesson.quiz %}
+
+            <form id="quiz-form">
+
+                {% for question in lesson.quiz %}
+
+                    <div class="quiz-question">
+
+                        <p>
+                            <strong>
+                                {{ forloop.counter }}. {{ question.question }}
+                            </strong>
+                        </p>
+
+                        {% for option in question.options %}
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="q{{ forloop.parentloop.counter }}"
+                                    value="{{ forloop.counter0 }}"
+                                    data-correct="{% if option == question.answer %}yes{% else %}no{% endif %}">
+                                {{ option }}
+                            </label>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endfor %}
+
+                <button type="button" onclick="checkQuiz()">
+                    Submit Quiz
+                </button>
+
+                <div id="quiz-result"></div>
+
+            </form>
+
+        {% else %}
+
+            <p>
+                Quiz questions will appear here once the lesson quiz
+                content is added.
+            </p>
+
+        {% endif %}
+
+    </section>
+
+    <!-- LESSON COMPLETION -->
+    <section class="panel completion-panel">
+
+        <h2>Lesson Completion</h2>
+
+        {% if is_completed %}
+
+            <div class="completed-message">
+                <h3>✓ Lesson Completed!</h3>
+                <p>You have successfully completed this lesson.</p>
+                Your progress has been saved successfully.
+            </div>
+
+            <a class="btn-outline"
+               href="{% url 'learning_roadmap' %}?goal={{ career_goal|urlencode }}">
+                Back to Learning Roadmap
+            </a>
+
+        {% else %}
+
+            <p>
+                Finished learning and practising this lesson?
+                Mark it as completed to save your progress.
+            </p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <input type="hidden"
+                       name="action"
+                       value="complete_lesson">
+
+                <button type="submit">
+                    ✓ Mark Lesson as Completed
+                </button>
+            </form>
+
+        {% endif %}
+
+    </section>
+
+    <!-- NAVIGATION -->
+    <div class="bottom-actions">
+
+        <a class="btn-outline"
+           href="{% url 'learning_roadmap' %}?goal={{ career_goal|urlencode }}">
+            ← Back to Roadmap
+        </a>
+
+        {% if step_number < 5 %}
+
+            <a href="{% url 'career_learning_center' career_slug step_number|add:1 %}">
+                <button type="button">Next Lesson →</button>
+            </a>
+
+        {% else %}
+
+            <a href="{% url 'learning_roadmap' %}?goal={{ career_goal|urlencode }}">
+                <button type="button">Finish Learning →</button>
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</main>
+
+<footer>
+    SkillBridge  · Learn Today, Grow Tomorrow
+</footer>
+
+<script>
+    function checkQuiz() {
+
+        const form = document.getElementById("quiz-form");
+
+        if (!form) {
+            return;
+        }
+
+        const questions = form.querySelectorAll(".quiz-question");
+
+        let score = 0;
+        let attempted = 0;
+
+        questions.forEach(function(question) {
+
+            const selected = question.querySelector(
+                'input[type="radio"]:checked'
+            );
+
+            if (selected) {
+                attempted++;
+
+                if (selected.dataset.correct === "yes") {
+                    score++;
+                }
+            }
+
+        });
+
+        const result = document.getElementById("quiz-result");
+
+        if (attempted < questions.length) {
+            result.textContent =
+                "Please answer all " + questions.length +
+                " questions before submitting.";
+            return;
+        }
+
+        result.textContent =
+            "Your Score: " + score + " / " + questions.length +
+            ". " +
+            (score >= Math.ceil(questions.length * 0.8)
+                ? "Great work! Keep learning."
+                : "Good try! Review the lesson and try again.");
+    }
+</script>
+
+</body>
+</html>

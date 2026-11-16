@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django & Database Integration | SkillBridge </title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f8f5ff;
+            color: #38304a;
+            line-height: 1.7;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee5fa;
+            box-shadow: 0 3px 15px rgba(100, 60, 150, 0.05);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #713ac5;
+        }
+
+        header a {
+            color: #9b43b8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        header a:hover {
+            color: #713ac5;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 35px auto;
+            padding: 0 22px;
+        }
+
+        .hero {
+            padding: 35px;
+            border-radius: 20px;
+            background: linear-gradient(120deg, #773bd0, #a044c6, #e17ab8);
+            margin-bottom: 28px;
+            box-shadow: 0 12px 30px rgba(139, 65, 190, 0.18);
+        }
+
+        .hero span {
+            color: #f6e7ff;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 30px;
+            margin: 12px 0;
+        }
+
+        .hero p {
+            color: #fff0ff;
+        }
+
+        .panel {
+            background: #ffffff;
+            border: 1px solid #eee4fa;
+            border-radius: 17px;
+            padding: 27px;
+            margin-bottom: 22px;
+            box-shadow: 0 5px 20px rgba(111, 65, 160, 0.06);
+        }
+
+        h2 {
+            color: #793fc1;
+            font-size: 21px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #59318d;
+            font-size: 17px;
+            margin: 18px 0 10px;
+        }
+
+        p, li {
+            color: #70677e;
+            font-size: 14px;
+        }
+
+        ul, ol {
+            padding-left: 22px;
+            margin: 12px 0;
+        }
+
+        li {
+            margin-bottom: 7px;
+        }
+
+        .code-box {
+            background: #302344;
+            border: 1px solid #49345e;
+            border-radius: 10px;
+            padding: 17px;
+            margin: 14px 0;
+            overflow-x: auto;
+        }
+
+        pre {
+            color: #f3d8ff;
+            font-size: 13px;
+            white-space: pre-wrap;
+            font-family: Consolas, monospace;
+        }
+
+        .note {
+            background: #fff2f8;
+            border-left: 4px solid #d16ab2;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 7px;
+            color: #914878;
+        }
+
+        .exercise {
+            background: #fcf8ff;
+            border: 1px solid #eadcf7;
+            padding: 17px;
+            border-radius: 10px;
+            margin: 12px 0;
+        }
+
+        .question {
+            padding: 18px;
+            background: #fcf8ff;
+            border: 1px solid #eadcf7;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .question p {
+            color: #59318d;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .question label {
+            display: block;
+            color: #655875;
+            font-size: 14px;
+            margin: 9px 0;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            accent-color: #934bc9;
+            margin-right: 8px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #773bd0, #c04cae);
+            color: white;
+            border: none;
+            padding: 13px 22px;
+            border-radius: 9px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 14px rgba(140, 65, 180, 0.22);
+        }
+
+        #quiz-result {
+            margin-top: 18px;
+            padding: 15px;
+            border-radius: 9px;
+            background: #fff2f8;
+            color: #843bb0;
+            display: none;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #9b43b8;
+            text-decoration: none;
+            margin: 5px 0 25px;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: #713ac5;
+        }
+
+        .completion-panel {
+            text-align: center;
+            border: 1px solid #e7d5f5;
+            background: linear-gradient(145deg, #ffffff, #fcf5ff);
+        }
+
+        .completion-panel h2 {
+            color: #793fc1;
+        }
+
+        .completed-message {
+            background: #f0fff7;
+            border: 1px solid #bce8d0;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 18px 0;
+        }
+
+        .completed-message h3 {
+            color: #32835c;
+            margin: 0 0 10px;
+        }
+
+        .completed-message p {
+            color: #32835c;
+        }
+
+        .completion-panel button {
+            margin-top: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #9588a6;
+            border-top: 1px solid #eee4fa;
+            font-size: 13px;
+            background: #ffffff;
+        }
+
+        @media(max-width: 600px) {
+            header {
+                padding: 16px 5%;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .hero {
+                padding: 24px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .panel {
+                padding: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">✦ SkillBridge </div>
+    <a href="{% url 'learning_roadmap' %}">← Learning Roadmap</a>
+</header>
+
+<main>
+
+    <section class="hero">
+        <span>PYTHON DEVELOPER · STEP 03</span>
+        <h1>Django & Database Integration 🚀</h1>
+        <p>
+            Learn how Django applications work with databases,
+            manage data and build dynamic web applications.
+        </p>
+    </section>
+
+    <section class="panel">
+        <h2>1. Introduction to Django</h2>
+
+        <p>
+            Django is a high-level Python web framework used to build
+            secure and maintainable web applications quickly.
+        </p>
+
+        <h3>Why Django?</h3>
+        <ul>
+            <li>Built using Python.</li>
+            <li>Provides built-in authentication.</li>
+            <li>Supports database operations.</li>
+            <li>Includes an admin panel.</li>
+            <li>Follows the MVT architecture.</li>
+        </ul>
+
+        <div class="note">
+            <strong>Remember:</strong>
+            Django helps developers build dynamic websites using Python.
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>2. Django Project and App</h2>
+
+        <p>
+            A Django project is the complete web application.
+            An app is a module inside the project that handles a specific feature.
+        </p>
+
+        <h3>Create a Django Project</h3>
+        <div class="code-box">
+            <pre>django-admin startproject myproject</pre>
+        </div>
+
+        <h3>Move into the project folder</h3>
+        <div class="code-box">
+            <pre>cd myproject</pre>
+        </div>
+
+        <h3>Create an App</h3>
+        <div class="code-box">
+            <pre>python manage.py startapp students</pre>
+        </div>
+
+        <h3>Important Django Files</h3>
+        <ul>
+            <li><strong>models.py:</strong> Defines database models.</li>
+            <li><strong>views.py:</strong> Handles application logic.</li>
+            <li><strong>urls.py:</strong> Defines URL routes.</li>
+            <li><strong>admin.py:</strong> Registers models in admin.</li>
+            <li><strong>settings.py:</strong> Contains project settings.</li>
+        </ul>
+    </section>
+
+    <section class="panel">
+        <h2>3. Django Models and Database</h2>
+
+        <p>
+            A model is a Python class that represents a database table.
+            Each model field represents a column in that table.
+        </p>
+
+        <h3>Example: Student Model</h3>
+        <div class="code-box">
+            <pre>from django.db import models
+
+class Student(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    age = models.IntegerField()
+
+    def __str__(self):
+        return self.name</pre>
+        </div>
+
+        <h3>Explanation</h3>
+        <ul>
+            <li><strong>CharField:</strong> Stores text.</li>
+            <li><strong>EmailField:</strong> Stores email addresses.</li>
+            <li><strong>IntegerField:</strong> Stores whole numbers.</li>
+            <li><strong>__str__:</strong> Returns a readable object name.</li>
+        </ul>
+
+        <h3>Create Database Migrations</h3>
+        <div class="code-box">
+            <pre>python manage.py makemigrations
+
+python manage.py migrate</pre>
+        </div>
+
+        <div class="note">
+            <strong>Important:</strong>
+            makemigrations creates migration files.
+            migrate applies those changes to the database.
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>4. CRUD Operations</h2>
+
+        <p>
+            CRUD represents the four basic operations used to manage
+            data in an application.
+        </p>
+
+        <ul>
+            <li><strong>Create:</strong> Add new records.</li>
+            <li><strong>Read:</strong> Retrieve records.</li>
+            <li><strong>Update:</strong> Modify existing records.</li>
+            <li><strong>Delete:</strong> Remove records.</li>
+        </ul>
+
+        <h3>Create a Record</h3>
+        <div class="code-box">
+            <pre>Student.objects.create(
+    name="Arun",
+    email="arun@example.com",
+    age=21
+)</pre>
+        </div>
+
+        <h3>Read Records</h3>
+        <div class="code-box">
+            <pre>students = Student.objects.all()</pre>
+        </div>
+
+        <h3>Update a Record</h3>
+        <div class="code-box">
+            <pre>student = Student.objects.get(id=1)
+student.name = "Kumar"
+student.save()</pre>
+        </div>
+
+        <h3>Delete a Record</h3>
+        <div class="code-box">
+            <pre>student = Student.objects.get(id=1)
+student.delete()</pre>
+        </div>
+
+        <div class="note">
+            CRUD operations help applications store, display,
+            update and remove information.
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>5. Django Views and URLs</h2>
+
+        <p>
+            Views contain the logic that processes a request and returns
+            a response. URLs connect a browser address to a view.
+        </p>
+
+        <h3>Example View</h3>
+        <div class="code-box">
+            <pre>from django.http import HttpResponse
+
+def student_home(request):
+    return HttpResponse("Welcome to Student Page")</pre>
+        </div>
+
+        <h3>Example URL</h3>
+        <div class="code-box">
+            <pre>from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('students/', views.student_home,
+         name='student_home'),
+]</pre>
+        </div>
+
+        <p>
+            When a user visits the students URL, Django calls
+            the connected view function.
+        </p>
+    </section>
+
+    <section class="panel">
+        <h2>6. Practical Exercises</h2>
+
+        <div class="exercise">
+            <h3>Exercise 1: Create a Model</h3>
+            <p>
+                Create an Employee model with name, email and salary fields.
+            </p>
+        </div>
+
+        <div class="exercise">
+            <h3>Exercise 2: Database Operations</h3>
+            <p>
+                Practice creating, reading, updating and deleting
+                student records using Django ORM.
+            </p>
+        </div>
+
+        <div class="exercise">
+            <h3>Exercise 3: Create a View</h3>
+            <p>
+                Create a Django view that displays
+                "Welcome to SkillBridge ".
+            </p>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>7. Test Your Knowledge 🧠</h2>
+
+        <p>Answer all five questions to check your understanding.</p>
+
+        <form id="quiz-form">
+
+            <div class="question">
+                <p>1. Django is built using which language?</p>
+                <label><input type="radio" name="q1" value="a"> Java</label>
+                <label><input type="radio" name="q1" value="b"> Python</label>
+                <label><input type="radio" name="q1" value="c"> C</label>
+            </div>
+
+            <div class="question">
+                <p>2. Which file defines Django database models?</p>
+                <label><input type="radio" name="q2" value="a"> views.py</label>
+                <label><input type="radio" name="q2" value="b"> urls.py</label>
+                <label><input type="radio" name="q2" value="c"> models.py</label>
+            </div>
+
+            <div class="question">
+                <p>3. Which command creates migration files?</p>
+                <label><input type="radio" name="q3" value="a"> makemigrations</label>
+                <label><input type="radio" name="q3" value="b"> runserver</label>
+                <label><input type="radio" name="q3" value="c"> startapp</label>
+            </div>
+
+            <div class="question">
+                <p>4. What does CRUD stand for?</p>
+                <label><input type="radio" name="q4" value="a"> Create, Run, Use, Delete</label>
+                <label><input type="radio" name="q4" value="b"> Create, Read, Update, Delete</label>
+                <label><input type="radio" name="q4" value="c"> Copy, Read, Upload, Download</label>
+            </div>
+
+            <div class="question">
+                <p>5. Which file handles request and response logic?</p>
+                <label><input type="radio" name="q5" value="a"> admin.py</label>
+                <label><input type="radio" name="q5" value="b"> settings.py</label>
+                <label><input type="radio" name="q5" value="c"> views.py</label>
+            </div>
+
+            <button type="button" onclick="checkQuiz()">
+                Submit Quiz →
+            </button>
+
+        </form>
+
+        <div id="quiz-result"></div>
+    </section>
+
+    <!-- LESSON COMPLETION -->
+
+    <section class="panel completion-panel">
+
+        <h2>8. Lesson Completion</h2>
+
+        {% if is_completed %}
+
+            <div class="completed-message">
+                <h3>✓ Lesson Completed!</h3>
+
+                <p>
+                    You have successfully completed this lesson.
+                </p>
+
+                <p>
+                    Your progress has been saved successfully.
+                </p>
+            </div>
+
+            <button type="button"
+                onclick="window.location.href='{% url 'learning_roadmap' %}'">
+                Back to Learning Roadmap
+            </button>
+
+        {% else %}
+
+            <p>
+                Finished learning and practising this lesson?
+                Mark it as completed to save your progress.
+            </p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <input type="hidden"
+                       name="action"
+                       value="complete_lesson">
+
+                <button type="submit">
+                    ✓ Mark Lesson as Completed
+                </button>
+            </form>
+
+        {% endif %}
+
+    </section>
+
+    <a href="{% url 'learning_roadmap' %}" class="back-link">
+        ← Back to Learning Roadmap
+    </a>
+
+</main>
+
+<footer>
+    SkillBridge  · Learn Today, Grow Tomorrow
+</footer>
+
+<script>
+    function checkQuiz() {
+
+        const answers = {
+            q1: "b",
+            q2: "c",
+            q3: "a",
+            q4: "b",
+            q5: "c"
+        };
+
+        let score = 0;
+        let answered = 0;
+
+        for (let question in answers) {
+
+            const selected = document.querySelector(
+                'input[name="' + question + '"]:checked'
+            );
+
+            if (selected) {
+                answered++;
+
+                if (selected.value === answers[question]) {
+                    score++;
+                }
+            }
+        }
+
+        const result = document.getElementById("quiz-result");
+
+        result.style.display = "block";
+
+        if (answered < 5) {
+            result.textContent =
+                "Please answer all 5 questions. You answered " +
+                answered + " out of 5.";
+            return;
+        }
+
+        result.innerHTML =
+            "🎉 Your Score: " + score +
+            " / 5<br>" +
+            (score >= 4
+                ? "Excellent! You understood this lesson."
+                : "Good attempt! Review the lesson and try again.");
+    }
+</script>
+
+</body>
+</html>

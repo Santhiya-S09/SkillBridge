@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 4 - Complete Django Project | SkillBridge </title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f5ff;
+            color: #383047;
+            line-height: 1.7;
+        }
+
+        .header {
+            background: linear-gradient(120deg, #773bd0, #a044c6, #e17ab8);
+            padding: 35px 8%;
+            color: white;
+        }
+
+        .header a {
+            color: #fff0fb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .header h1 {
+            margin-top: 18px;
+            font-size: 30px;
+        }
+
+        .header p {
+            color: #fff0fb;
+            margin-top: 8px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #eee5fb;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 22px;
+            box-shadow: 0 5px 20px rgba(105, 59, 160, 0.07);
+        }
+
+        h2 {
+            color: #7136bd;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #9848b7;
+            margin: 18px 0 8px;
+        }
+
+        p, li {
+            color: #625a70;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        pre {
+            background: #302344;
+            color: #f0e6ff;
+            border: 1px solid #57406f;
+            border-radius: 10px;
+            padding: 17px;
+            overflow-x: auto;
+            margin: 12px 0;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .note {
+            background: #f7efff;
+            border-left: 4px solid #a34ac7;
+            padding: 14px;
+            border-radius: 8px;
+            margin-top: 14px;
+        }
+
+        .question {
+            margin: 18px 0;
+            padding: 17px;
+            background: #faf5ff;
+            border: 1px solid #eee0fb;
+            border-radius: 10px;
+        }
+
+        .question label {
+            display: block;
+            margin: 9px 0;
+            color: #554b65;
+            cursor: pointer;
+        }
+
+        .question input {
+            accent-color: #9144c4;
+            margin-right: 7px;
+        }
+
+        button {
+            background: linear-gradient(120deg, #773bd0, #c04eae);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 12px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 14px rgba(119, 59, 208, 0.25);
+        }
+
+        #quizResult {
+            display: none;
+            margin-top: 22px;
+            padding: 16px;
+            background: #f2eaff;
+            border: 1px solid #dfcafa;
+            border-radius: 10px;
+            color: #7136bd;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .footer {
+            text-align: center;
+            color: #887c98;
+            padding: 25px;
+        }
+
+        code {
+            color: #a044b8;
+            font-weight: 600;
+        }
+
+        .completion-panel {
+            border: 1px solid #dfcafa;
+            background: linear-gradient(135deg, #ffffff, #f8efff);
+            text-align: center;
+        }
+
+        .completion-panel h2 {
+            color: #7838bd;
+        }
+
+        .completed-message {
+            background: #edfff5;
+            border: 1px solid #b9e8ce;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 18px 0;
+        }
+
+        .completed-message h3 {
+            color: #23834e;
+            margin-top: 0;
+        }
+
+        .completed-message p {
+            color: #397653;
+        }
+
+        .completion-panel button {
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 28px 6%;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .container {
+                padding: 0 14px;
+            }
+
+            .card {
+                padding: 19px;
+            }
+
+            pre {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <a href="{% url 'learning_roadmap' %}">← Back to Learning Roadmap</a>
+
+    <h1>Step 4: Complete Django Project</h1>
+
+    <p>Build a practical Student Task Tracker using Django and Python.</p>
+</header>
+
+<main class="container">
+
+    <section class="card">
+        <h2>1. Project Introduction</h2>
+
+        <p>
+            In this lesson, we are going to build a Student Task Tracker.
+            Students can add tasks, view their tasks, update task details
+            and delete completed or unnecessary tasks.
+        </p>
+
+        <h3>Project Features</h3>
+
+        <ul>
+            <li>Add a new task.</li>
+            <li>Display all tasks.</li>
+            <li>Update existing tasks.</li>
+            <li>Delete tasks.</li>
+            <li>Store task information in a database.</li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>2. Create a Django Project</h2>
+
+        <p>Open the terminal and create a Django project:</p>
+
+        <pre>django-admin startproject tasktracker
+cd tasktracker
+python manage.py startapp tasks</pre>
+
+        <p>
+            A Django project contains the main configuration.
+            An app contains the features of the application.
+        </p>
+
+        <div class="note">
+            <strong>Remember:</strong> Add <code>tasks</code> to
+            <code>INSTALLED_APPS</code> in settings.py.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>3. Create a Task Model</h2>
+
+        <p>
+            A model defines the structure of the data stored in the database.
+            Open <code>tasks/models.py</code>.
+        </p>
+
+        <pre>from django.db import models
+
+class Task(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    is_completed = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title</pre>
+
+        <p>Run these commands to create the database table:</p>
+
+        <pre>python manage.py makemigrations
+python manage.py migrate</pre>
+    </section>
+
+    <section class="card">
+        <h2>4. Create Views</h2>
+
+        <p>
+            Views handle user requests and return responses.
+            Open <code>tasks/views.py</code>.
+        </p>
+
+        <h3>Display Tasks</h3>
+
+        <pre>from django.shortcuts import render, redirect
+from .models import Task
+
+def task_list(request):
+    tasks = Task.objects.all().order_by('-created_at')
+    return render(request, 'tasks/task_list.html',
+                  {'tasks': tasks})</pre>
+
+        <h3>Add a Task</h3>
+
+        <pre>def add_task(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+
+        if title:
+            Task.objects.create(
+                title=title,
+                description=description
+            )
+
+        return redirect('task_list')
+
+    return render(request, 'tasks/add_task.html')</pre>
+
+        <h3>Update a Task</h3>
+
+        <pre>def update_task(request, task_id):
+    task = Task.objects.get(id=task_id)
+
+    if request.method == 'POST':
+        task.title = request.POST.get('title')
+        task.description = request.POST.get('description')
+        task.is_completed = (
+            request.POST.get('is_completed') == 'on'
+        )
+        task.save()
+
+        return redirect('task_list')
+
+    return render(
+        request,
+        'tasks/update_task.html',
+        {'task': task}
+    )</pre>
+
+        <h3>Delete a Task</h3>
+
+        <pre>def delete_task(request, task_id):
+    task = Task.objects.get(id=task_id)
+    task.delete()
+
+    return redirect('task_list')</pre>
+    </section>
+
+    <section class="card">
+        <h2>5. Configure URLs</h2>
+
+        <p>Create <code>tasks/urls.py</code>:</p>
+
+        <pre>from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.task_list, name='task_list'),
+    path('add/', views.add_task, name='add_task'),
+    path('update/&lt;int:task_id&gt;/', views.update_task,
+         name='update_task'),
+    path('delete/&lt;int:task_id&gt;/', views.delete_task,
+         name='delete_task'),
+]</pre>
+
+        <p>
+            Include the app URLs in the main project's
+            <code>tasktracker/urls.py</code>:
+        </p>
+
+        <pre>from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('tasks.urls')),
+]</pre>
+    </section>
+
+    <section class="card">
+        <h2>6. Create HTML Templates</h2>
+
+        <p>
+            Create a folder named <code>templates/tasks</code>
+            inside the app and add the following files.
+        </p>
+
+        <h3>task_list.html</h3>
+
+        <pre>{% verbatim %}
+&lt;h1&gt;Student Task Tracker&lt;/h1&gt;
+
+&lt;a href="{% url 'add_task' %}"&gt;Add New Task&lt;/a&gt;
+
+{% for task in tasks %}
+    &lt;h3&gt;{{ task.title }}&lt;/h3&gt;
+    &lt;p&gt;{{ task.description }}&lt;/p&gt;
+
+    &lt;p&gt;
+        Status:
+        {% if task.is_completed %}
+            Completed
+        {% else %}
+            Pending
+        {% endif %}
+    &lt;/p&gt;
+
+    &lt;a href="{% url 'update_task' task.id %}"&gt;
+        Edit
+    &lt;/a&gt;
+
+    &lt;a href="{% url 'delete_task' task.id %}"&gt;
+        Delete
+    &lt;/a&gt;
+{% empty %}
+    &lt;p&gt;No tasks available.&lt;/p&gt;
+{% endfor %}
+{% endverbatim %}</pre>
+
+        <h3>add_task.html</h3>
+
+        <pre>{% verbatim %}
+&lt;h1&gt;Add New Task&lt;/h1&gt;
+
+&lt;form method="POST"&gt;
+    {% csrf_token %}
+
+    &lt;input type="text" name="title"
+           placeholder="Task title" required&gt;
+
+    &lt;textarea name="description"
+              placeholder="Description"&gt;&lt;/textarea&gt;
+
+    &lt;button type="submit"&gt;Save Task&lt;/button&gt;
+&lt;/form&gt;
+{% endverbatim %}</pre>
+
+        <h3>update_task.html</h3>
+
+        <pre>{% verbatim %}
+&lt;h1&gt;Update Task&lt;/h1&gt;
+
+&lt;form method="POST"&gt;
+    {% csrf_token %}
+
+    &lt;input type="text" name="title"
+           value="{{ task.title }}" required&gt;
+
+    &lt;textarea name="description"&gt;{{ task.description }}&lt;/textarea&gt;
+
+    &lt;label&gt;
+        &lt;input type="checkbox" name="is_completed"
+        {% if task.is_completed %}checked{% endif %}&gt;
+        Completed
+    &lt;/label&gt;
+
+    &lt;button type="submit"&gt;Update Task&lt;/button&gt;
+&lt;/form&gt;
+{% endverbatim %}</pre>
+    </section>
+
+    <section class="card">
+        <h2>7. Run and Test the Project</h2>
+
+        <p>Run the development server:</p>
+
+        <pre>python manage.py runserver</pre>
+
+        <p>Open the local website and test these features:</p>
+
+        <ol>
+            <li>Add a new student task.</li>
+            <li>Check whether it appears in the task list.</li>
+            <li>Edit the task details.</li>
+            <li>Mark the task as completed.</li>
+            <li>Delete a task and verify the result.</li>
+        </ol>
+
+        <div class="note">
+            <strong>Project learning outcome:</strong>
+            You have learned how to connect Django models, views, URLs,
+            templates and database operations in one application.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>8. Practice Exercises</h2>
+
+        <ol>
+            <li>Add a due-date field to the Task model.</li>
+            <li>Display pending and completed tasks separately.</li>
+            <li>Add a search option for tasks.</li>
+            <li>Improve the page using CSS and Bootstrap.</li>
+        </ol>
+    </section>
+
+    <section class="card">
+        <h2>9. Knowledge Check</h2>
+
+        <p>Answer these questions to check your understanding.</p>
+
+        <form id="quizForm">
+
+            <div class="question">
+                <p><strong>1. Which file defines Django database models?</strong></p>
+                <label><input type="radio" name="q1" value="a"> views.py</label>
+                <label><input type="radio" name="q1" value="b"> models.py</label>
+                <label><input type="radio" name="q1" value="c"> urls.py</label>
+            </div>
+
+            <div class="question">
+                <p><strong>2. Which command creates migration files?</strong></p>
+                <label><input type="radio" name="q2" value="a"> python manage.py runserver</label>
+                <label><input type="radio" name="q2" value="b"> python manage.py migrate</label>
+                <label><input type="radio" name="q2" value="c"> python manage.py makemigrations</label>
+            </div>
+
+            <div class="question">
+                <p><strong>3. Which method saves model changes?</strong></p>
+                <label><input type="radio" name="q3" value="a"> save()</label>
+                <label><input type="radio" name="q3" value="b"> delete()</label>
+                <label><input type="radio" name="q3" value="c"> render()</label>
+            </div>
+
+            <div class="question">
+                <p><strong>4. Which operation removes a database object?</strong></p>
+                <label><input type="radio" name="q4" value="a"> create()</label>
+                <label><input type="radio" name="q4" value="b"> delete()</label>
+                <label><input type="radio" name="q4" value="c"> filter()</label>
+            </div>
+
+            <div class="question">
+                <p><strong>5. What is the purpose of Django templates?</strong></p>
+                <label><input type="radio" name="q5" value="a"> Store database records</label>
+                <label><input type="radio" name="q5" value="b"> Configure the server</label>
+                <label><input type="radio" name="q5" value="c"> Display dynamic HTML pages</label>
+            </div>
+
+            <button type="button" onclick="checkQuiz()">
+                Submit Answers
+            </button>
+
+            <div id="quizResult"></div>
+
+        </form>
+    </section>
+
+    <!-- LESSON COMPLETION SECTION -->
+
+    <section class="card completion-panel">
+
+        <h2>Lesson Completion</h2>
+
+        {% if is_completed %}
+
+            <div class="completed-message">
+                <h3>✓ Lesson Completed!</h3>
+                <p>You have successfully completed this lesson.</p>
+                <p>Your progress has been saved successfully.</p>
+            </div>
+
+            <button type="button"
+                onclick="window.location.href='{% url 'learning_roadmap' %}'">
+                Back to Learning Roadmap
+            </button>
+
+        {% else %}
+
+            <p>
+                Finished learning and practising this lesson?
+                Mark it as completed to save your progress.
+            </p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <input type="hidden"
+                       name="action"
+                       value="complete_lesson">
+
+                <button type="submit">
+                    ✓ Mark Lesson as Completed
+                </button>
+            </form>
+
+        {% endif %}
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    SkillBridge  | Learn • Practice • Grow
+</footer>
+
+<script>
+    function checkQuiz() {
+
+        const answers = {
+            q1: "b",
+            q2: "c",
+            q3: "a",
+            q4: "b",
+            q5: "c"
+        };
+
+        let score = 0;
+
+        for (let question in answers) {
+
+            const selected = document.querySelector(
+                'input[name="' + question + '"]:checked'
+            );
+
+            if (!selected) {
+                alert("Please answer all 5 questions before submitting!");
+                return;
+            }
+
+            if (selected.value === answers[question]) {
+                score++;
+            }
+        }
+
+        const result = document.getElementById("quizResult");
+
+        let feedback = "";
+
+        if (score === 5) {
+            feedback = "Excellent! You understood this lesson.";
+        } else if (score === 4) {
+            feedback = "Very Good! You have a good understanding.";
+        } else if (score === 3) {
+            feedback = "Good effort! Keep practising to improve.";
+        } else {
+            feedback = "Keep practising! Revise the lesson and try again.";
+        }
+
+        result.innerHTML =
+            "🎉 Your Score: " + score + " / 5" +
+            "<br>" + feedback;
+
+        result.style.display = "block";
+
+        result.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1206 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillBridge | Your Future, Reimagined</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: #faf7ff;
+    color: #30234a;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+:root {
+    --purple: #8247d8;
+    --pink: #ed68ae;
+    --dark: #30234a;
+    --muted: #81758f;
+    --light: #faf7ff;
+}
+
+/* NAVBAR */
+
+.navbar {
+    min-height: 80px;
+    padding: 0 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    border-bottom: 1px solid #eee5fa;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    box-shadow: 0 4px 20px #55308008;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: var(--dark);
+}
+
+.logo span {
+    background: linear-gradient(100deg, #a34bd8, #ed68ae);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-links a {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 10px;
+    color: #695b7c;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: var(--purple);
+    background: #f7efff;
+}
+
+.nav-links .nav-btn {
+    background: linear-gradient(100deg, #9148d8, #e56aaa);
+    color: white;
+    box-shadow: 0 6px 18px #a34bd833;
+}
+
+.nav-links .nav-btn:hover {
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 9px 23px #a34bd844;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 690px;
+    padding: 90px 8%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 85% 40%, #f5d9f1 0%, transparent 42%),
+        radial-gradient(ellipse at 5% 90%, #e9ddff 0%, transparent 38%),
+        #faf7ff;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 480px;
+    height: 480px;
+    border: 1px solid #a34bd81c;
+    border-radius: 50%;
+    right: -150px;
+    top: 40px;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    border: 1px solid #ed68ae25;
+    border-radius: 50%;
+    right: -75px;
+    top: 115px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    animation: appear .8s ease;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 16px;
+    border: 1px solid #d8b7f1;
+    background: #f4eaff;
+    border-radius: 30px;
+    color: #9148c9;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.tag i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ed68ae;
+    box-shadow: 0 0 10px #ed68ae88;
+}
+
+.hero h1 {
+    font-size: clamp(43px, 5.2vw, 69px);
+    line-height: 1.12;
+    letter-spacing: -3.5px;
+    margin: 28px 0 23px;
+    font-weight: 900;
+    color: #30234a;
+}
+
+.gradient-text {
+    background: linear-gradient(100deg, #9148d8, #ed68ae);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero-content > p {
+    max-width: 510px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 32px;
+}
+
+.buttons {
+    display: flex;
+    gap: 13px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 16px 25px;
+    border-radius: 11px;
+    font-size: 13px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: .3s;
+}
+
+.btn-main {
+    background: linear-gradient(100deg, #9148d8, #e56aaa);
+    color: white;
+    box-shadow: 0 9px 25px #a34bd833;
+}
+
+.btn-main:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 13px 30px #a34bd844;
+    color: white;
+}
+
+.btn-outline {
+    border: 1px solid #d9c5ec;
+    background: white;
+    color: #7542b5;
+}
+
+.btn-outline:hover {
+    background: #f7efff;
+    transform: translateY(-4px);
+}
+
+.hero-note {
+    margin-top: 35px;
+    color: #968aa4;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hero-note b {
+    color: #9148d8;
+}
+
+/* CAREER DASHBOARD VISUAL */
+
+.visual {
+    position: relative;
+    z-index: 2;
+    min-height: 470px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.glow {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    background: #d78ce9;
+    filter: blur(110px);
+    opacity: .35;
+    border-radius: 50%;
+}
+
+.ai-window {
+    width: 100%;
+    max-width: 490px;
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #eee1fa;
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: 0 25px 65px #6d41951a;
+    animation: float 5s ease-in-out infinite;
+}
+
+.window-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.window-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #49345f;
+}
+
+.window-status {
+    font-size: 10px;
+    color: #29966a;
+    background: #e6f8ef;
+    padding: 7px 10px;
+    border-radius: 20px;
+}
+
+.profile-panel {
+    padding: 22px;
+    border-radius: 15px;
+    background: linear-gradient(110deg, #9148d8, #e56aaa);
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.profile-panel small {
+    font-size: 10px;
+    opacity: .85;
+    letter-spacing: 1px;
+}
+
+.profile-panel h3 {
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.profile-panel p {
+    font-size: 11px;
+    opacity: .85;
+}
+
+.profile-panel::after {
+    content: "✦";
+    position: absolute;
+    right: 22px;
+    top: 10px;
+    font-size: 80px;
+    opacity: .15;
+}
+
+.widget-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.widget {
+    background: #faf7ff;
+    border: 1px solid #f0e6fa;
+    border-radius: 13px;
+    padding: 16px;
+}
+
+.widget-icon {
+    font-size: 22px;
+}
+
+.widget h4 {
+    font-size: 12px;
+    margin: 11px 0 5px;
+    color: #49345f;
+}
+
+.widget p {
+    font-size: 10px;
+    color: #9588a4;
+}
+
+.progress-panel {
+    padding: 17px;
+    background: #faf7ff;
+    border: 1px solid #eee3f7;
+    border-radius: 13px;
+}
+
+.progress-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin-bottom: 13px;
+    color: #59466d;
+}
+
+.progress-top span:last-child {
+    color: #a34bd8;
+}
+
+.progress-bar {
+    height: 7px;
+    background: #eadff4;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 72%;
+    height: 100%;
+    background: linear-gradient(90deg, #9148d8, #ed68ae);
+    border-radius: 20px;
+}
+
+.floating {
+    position: absolute;
+    padding: 15px 18px;
+    border: 1px solid #eee0f8;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 12px 35px #6d41951a;
+    font-size: 11px;
+    font-weight: 700;
+    animation: float 4s ease-in-out infinite;
+}
+
+.float-one {
+    top: 35px;
+    right: -20px;
+    color: #a34bd8;
+}
+
+.float-two {
+    bottom: 25px;
+    left: -28px;
+    color: #d6539a;
+    animation-delay: 1s;
+}
+
+/* STRIP */
+
+.strip {
+    padding: 28px 8%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: #ffffff;
+    border-top: 1px solid #f0e6fa;
+    border-bottom: 1px solid #f0e6fa;
+}
+
+.strip-item {
+    text-align: center;
+    padding: 13px;
+    border-right: 1px solid #eee5f5;
+}
+
+.strip-item:last-child {
+    border: 0;
+}
+
+.strip-item strong {
+    display: block;
+    font-size: 25px;
+    background: linear-gradient(100deg, #9148d8, #ed68ae);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 7px;
+}
+
+.strip-item span {
+    font-size: 11px;
+    color: #9588a4;
+}
+
+/* FEATURES SECTION */
+
+.section {
+    padding: 100px 8%;
+    background: #faf7ff;
+}
+
+.heading {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 55px;
+}
+
+.heading > span {
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 800;
+    color: #a34bd8;
+}
+
+.heading h2 {
+    font-size: clamp(29px, 4vw, 42px);
+    letter-spacing: -1.5px;
+    margin: 17px 0;
+    color: #30234a;
+}
+
+.heading p {
+    color: #9588a4;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    padding: 32px 27px;
+    min-height: 245px;
+    border-radius: 17px;
+    background: #ffffff;
+    border: 1px solid #eee3f7;
+    transition: .35s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 20px #6d419508;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #d9b5ed;
+    box-shadow: 0 18px 40px #6d419515;
+}
+
+.card-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 15px;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    background: linear-gradient(135deg, #f2e5ff, #ffe8f3);
+    border: 1px solid #ead7f8;
+    margin-bottom: 25px;
+}
+
+.card h3 {
+    font-size: 17px;
+    margin-bottom: 13px;
+    color: #49345f;
+}
+
+.card p {
+    font-size: 12px;
+    line-height: 1.9;
+    color: #9588a4;
+}
+
+/* HOW IT WORKS */
+
+.steps-section {
+    padding: 85px 8%;
+    background: #ffffff;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.step {
+    text-align: center;
+    padding: 25px;
+}
+
+.step-number {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 20px;
+    border-radius: 16px;
+    background: linear-gradient(130deg, #9148d8, #e56aaa);
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+    box-shadow: 0 8px 22px #a34bd82b;
+}
+
+.step h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #49345f;
+}
+
+.step p {
+    font-size: 12px;
+    color: #9588a4;
+    line-height: 1.8;
+}
+
+/* CTA */
+
+.cta-wrap {
+    padding: 85px 8%;
+    background: #faf7ff;
+}
+
+.cta {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 75px 25px;
+    border-radius: 25px;
+    background:
+        radial-gradient(ellipse at 90% 10%, #ffffff35, transparent 35%),
+        linear-gradient(115deg, #8747ce, #df69a8);
+    box-shadow: 0 18px 45px #a34bd822;
+}
+
+.cta h2 {
+    font-size: clamp(27px, 4vw, 42px);
+    letter-spacing: -1.5px;
+    margin-bottom: 17px;
+    color: white;
+}
+
+.cta p {
+    max-width: 570px;
+    margin: 0 auto 28px;
+    color: #fff0fa;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.cta .btn {
+    background: white;
+    color: #9148c9;
+    box-shadow: none;
+    margin: 4px;
+}
+
+.cta .btn:hover {
+    transform: translateY(-4px);
+    background: #f8efff;
+}
+
+/* FOOTER */
+
+.footer {
+    padding: 28px 8%;
+    background: #ffffff;
+    border-top: 1px solid #eee5f5;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    color: #9588a4;
+    font-size: 11px;
+}
+
+.footer strong {
+    color: #a34bd8;
+}
+
+/* ANIMATIONS */
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-11px);
+    }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 950px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 75px 7%;
+        gap: 35px;
+    }
+
+    .hero-content {
+        max-width: 650px;
+    }
+
+    .visual {
+        max-width: 580px;
+        width: 100%;
+        margin: auto;
+    }
+
+    .cards {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width: 600px) {
+    .navbar {
+        padding: 15px 5%;
+        min-height: 72px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .nav-links {
+        gap: 3px;
+    }
+
+    .nav-links a {
+        padding: 10px 12px;
+        font-size: 11px;
+    }
+
+    .hero {
+        padding: 60px 6%;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .visual {
+        min-height: 390px;
+    }
+
+    .ai-window {
+        padding: 16px;
+    }
+
+    .float-one {
+        right: -5px;
+    }
+
+    .float-two {
+        left: -5px;
+    }
+
+    .strip {
+        padding: 20px 3%;
+    }
+
+    .strip-item strong {
+        font-size: 20px;
+    }
+
+    .strip-item span {
+        font-size: 9px;
+    }
+
+    .section {
+        padding: 70px 6%;
+    }
+
+    .cards,
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .steps-section {
+        padding: 65px 6%;
+    }
+
+    .cta-wrap {
+        padding: 55px 5%;
+    }
+
+    .cta {
+        padding: 55px 20px;
+    }
+
+    .footer {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media(prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <a href="{% url 'home' %}" class="logo">
+        SkillBridge <span>✦</span>
+    </a>
+
+    <div class="nav-links">
+
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+            <a href="{% url 'logout' %}" class="nav-btn">Logout</a>
+
+        {% else %}
+
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}" class="nav-btn">Sign Up</a>
+
+        {% endif %}
+
+    </div>
+
+</nav>
+
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="tag">
+            <i></i> YOUR CAREER GROWTH COMPANION
+        </div>
+
+        <h1>
+            Your Potential.<br>
+            Your Skills.<br>
+            <span class="gradient-text">Your Future.</span>
+        </h1>
+
+        <p>
+            Stop guessing your next career move. Discover your strengths,
+            identify skill gaps and build a personalized learning journey
+            with SkillBridge.
+        </p>
+
+        <div class="buttons">
+
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'dashboard' %}" class="btn btn-main">
+                    Explore Dashboard →
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'login' %}" class="btn btn-main">
+                    Login →
+                </a>
+
+                <a href="{% url 'register' %}" class="btn btn-outline">
+                    Create Account
+                </a>
+
+            {% endif %}
+
+        </div>
+
+        <div class="hero-note">
+            ✦
+            <span>
+                <b>Discover. Learn. Grow.</b>
+                Build a future with direction.
+            </span>
+        </div>
+
+    </div>
+
+
+    <!-- CAREER DASHBOARD PREVIEW -->
+
+    <div class="visual">
+
+        <div class="glow"></div>
+
+        <div class="ai-window">
+
+            <div class="window-top">
+
+                <div class="window-title">
+                    ✦ SkillBridge Dashboard
+                </div>
+
+                <div class="window-status">
+                    ● READY TO GROW
+                </div>
+
+            </div>
+
+            <div class="profile-panel">
+
+                <small>YOUR CAREER JOURNEY</small>
+
+                <h3>Make your next move 🚀</h3>
+
+                <p>
+                    A smarter path starts with knowing your skills.
+                </p>
+
+            </div>
+
+            <div class="widget-grid">
+
+                <div class="widget">
+                    <div class="widget-icon">🎯</div>
+                    <h4>Career Guidance</h4>
+                    <p>Find your direction</p>
+                </div>
+
+                <div class="widget">
+                    <div class="widget-icon">📊</div>
+                    <h4>Skill Assessment</h4>
+                    <p>Know your strengths</p>
+                </div>
+
+                <div class="widget">
+                    <div class="widget-icon">🧠</div>
+                    <h4>Skill Gap Analysis</h4>
+                    <p>Discover what to learn</p>
+                </div>
+
+                <div class="widget">
+                    <div class="widget-icon">🚀</div>
+                    <h4>Learning Roadmap</h4>
+                    <p>Plan your progress</p>
+                </div>
+
+            </div>
+
+            <div class="progress-panel">
+
+                <div class="progress-top">
+                    <span>Your learning journey</span>
+                    <span>Keep growing ✦</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="floating float-one">
+            ✦ Career Guidance
+        </div>
+
+        <div class="floating float-two">
+            🚀 Personalized Learning
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HIGHLIGHT STRIP -->
+
+<section class="strip">
+
+    <div class="strip-item">
+        <strong>01</strong>
+        <span>Discover Your Skills</span>
+    </div>
+
+    <div class="strip-item">
+        <strong>02</strong>
+        <span>Explore Career Paths</span>
+    </div>
+
+    <div class="strip-item">
+        <strong>03</strong>
+        <span>Build Your Future</span>
+    </div>
+
+</section>
+
+
+<!-- FEATURES SECTION -->
+
+<section class="section">
+
+    <div class="heading">
+
+        <span>THE SKILLBRIDGE EXPERIENCE</span>
+
+        <h2>Everything You Need to Grow</h2>
+
+        <p>
+            One platform to understand your potential, discover opportunities
+            and move towards your career goals.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-icon">🎯</div>
+
+            <h3>Personalized Career Guidance</h3>
+
+            <p>
+                Explore career paths based on your interests, education,
+                skills and professional goals.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">📊</div>
+
+            <h3>Smart Skill Assessment</h3>
+
+            <p>
+                Understand your current abilities and identify the skills
+                you can develop further.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🧠</div>
+
+            <h3>Skill Gap Analysis</h3>
+
+            <p>
+                Identify the difference between your current skills and
+                the skills your target career needs.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🚀</div>
+
+            <h3>Personalized Roadmap</h3>
+
+            <p>
+                Follow structured learning steps designed around your
+                chosen career direction.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">📈</div>
+
+            <h3>Progress Tracking</h3>
+
+            <p>
+                Keep track of your learning journey and see the steps
+                you have completed.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">✨</div>
+
+            <h3>Personal Growth</h3>
+
+            <p>
+                Turn your learning goals into meaningful actions and
+                build confidence step by step.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section class="steps-section">
+
+    <div class="heading">
+
+        <span>YOUR JOURNEY STARTS HERE</span>
+
+        <h2>Three Steps. One Stronger Future.</h2>
+
+        <p>
+            A simple journey to help you understand where you are
+            and where you want to go.
+        </p>
+
+    </div>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-number">01</div>
+
+            <h3>Discover Yourself</h3>
+
+            <p>
+                Explore your interests, education and existing skills.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">02</div>
+
+            <h3>Find Your Direction</h3>
+
+            <p>
+                Understand career opportunities and skills to improve.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">03</div>
+
+            <h3>Start Growing</h3>
+
+            <p>
+                Follow your roadmap and track your learning progress.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CALL TO ACTION -->
+
+<section class="cta-wrap">
+
+    <div class="cta">
+
+        <h2>Your Future Doesn't Build Itself.</h2>
+
+        <p>
+            Take the first step today. Discover your potential,
+            plan your learning and move towards a career you believe in.
+        </p>
+
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'dashboard' %}" class="btn">
+                Visit Dashboard →
+            </a>
+
+        {% else %}
+
+            <a href="{% url 'login' %}" class="btn">
+                Login
+            </a>
+
+            <a href="{% url 'register' %}" class="btn">
+                Sign Up
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <span>
+        © 2026 <strong>SkillBridge</strong>.
+        Empowering Skills. Building Futures.
+    </span>
+
+    <span>
+        Discover ✦ Learn ✦ Grow
+    </span>
+
+</footer>
+
+</body>
+</html>

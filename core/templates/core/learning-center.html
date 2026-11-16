@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Fundamentals | SkillBridge </title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f8f5ff;
+            color: #38304a;
+            line-height: 1.7;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee5fa;
+            box-shadow: 0 3px 15px rgba(100, 60, 150, 0.05);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #713ac5;
+        }
+
+        header a {
+            color: #9b43b8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        header a:hover {
+            color: #713ac5;
+        }
+
+        main {
+            max-width: 1050px;
+            margin: 35px auto;
+            padding: 0 22px;
+        }
+
+        .hero {
+            background: linear-gradient(120deg, #773bd0, #a044c6, #e17ab8);
+            padding: 38px;
+            border-radius: 22px;
+            margin-bottom: 28px;
+            color: white;
+            box-shadow: 0 12px 30px rgba(139, 65, 190, 0.18);
+        }
+
+        .hero span {
+            color: #f6e7ff;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin: 12px 0;
+        }
+
+        .hero p {
+            color: #fff0ff;
+        }
+
+        .info {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .info div {
+            background: rgba(255,255,255,0.17);
+            padding: 9px 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .panel {
+            background: #ffffff;
+            border: 1px solid #eee4fa;
+            border-radius: 17px;
+            padding: 27px;
+            margin-bottom: 23px;
+            box-shadow: 0 5px 20px rgba(111, 65, 160, 0.06);
+        }
+
+        h2 {
+            color: #793fc1;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #59318d;
+            margin: 18px 0 9px;
+        }
+
+        p {
+            color: #70677e;
+            margin-bottom: 12px;
+        }
+
+        .topic {
+            border-left: 3px solid #bd69d7;
+            padding-left: 18px;
+            margin: 25px 0;
+        }
+
+        .tamil {
+            background: #faf3ff;
+            border: 1px solid #ead9f8;
+            padding: 13px 16px;
+            border-radius: 10px;
+            color: #694b83;
+            margin: 12px 0;
+        }
+
+        pre {
+            background: #302344;
+            color: #f3d8ff;
+            padding: 18px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 13px 0;
+            border: 1px solid #49345e;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .note {
+            background: #fff2f8;
+            border: 1px solid #f4d2e5;
+            padding: 14px;
+            border-radius: 9px;
+            color: #9b477a;
+            margin: 12px 0;
+        }
+
+        .practice {
+            background: #faf5ff;
+            border: 1px solid #eee1fa;
+            padding: 17px;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+
+        .practice li {
+            color: #655875;
+            margin: 8px 0 8px 20px;
+        }
+
+        .quiz-question {
+            background: #fcf8ff;
+            border: 1px solid #eadcf7;
+            padding: 17px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .quiz-question label {
+            display: block;
+            color: #655875;
+            margin: 9px 0;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            accent-color: #934bc9;
+            margin-right: 8px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #773bd0, #c04cae);
+            color: white;
+            border: none;
+            border-radius: 9px;
+            padding: 13px 22px;
+            font-size: 14px;
+            font-weight: 650;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 14px rgba(140, 65, 180, 0.22);
+        }
+
+        #quiz-result {
+            margin-top: 15px;
+            color: #843bb0;
+            font-weight: bold;
+        }
+
+        .completion-panel {
+            text-align: center;
+            border: 1px solid #e7d5f5;
+            background: linear-gradient(135deg, #ffffff, #fcf5ff);
+        }
+
+        .completed-message {
+            background: #f0fff7;
+            border: 1px solid #bce8d0;
+            padding: 18px;
+            border-radius: 10px;
+            color: #32835c;
+            margin: 15px 0;
+        }
+
+        .completed-message h3 {
+            color: #32835c;
+            margin-top: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #9588a6;
+            border-top: 1px solid #eee4fa;
+            font-size: 13px;
+            background: #ffffff;
+        }
+
+        @media(max-width: 600px) {
+            header {
+                padding: 16px 5%;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .hero {
+                padding: 24px;
+            }
+
+            .hero h1 {
+                font-size: 25px;
+            }
+
+            .panel {
+                padding: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">✦ SkillBridge </div>
+    <a href="{% url 'learning_roadmap' %}">← Back to Roadmap</a>
+</header>
+
+<main>
+
+    <section class="hero">
+        <span>PYTHON DEVELOPER · STEP 01</span>
+        <h1>Python Fundamentals</h1>
+        <p>
+            Start your programming journey by learning Python basics.
+            Understand concepts, explore examples and practise what you learn.
+        </p>
+
+        <div class="info">
+            <div>📘 Beginner Level</div>
+            <div>⏱️ Learning Module</div>
+            <div>💻 Practical Learning</div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>What You Will Learn</h2>
+        <p>After completing this lesson, you will understand:</p>
+
+        <ul class="practice">
+            <li>Introduction to Python</li>
+            <li>Variables and Data Types</li>
+            <li>Python Operators</li>
+            <li>Conditional Statements</li>
+            <li>Loops</li>
+            <li>Basic Python Programs</li>
+        </ul>
+    </section>
+
+    <section class="panel">
+        <h2>1. Introduction to Python</h2>
+
+        <div class="topic">
+            <h3>What is Python?</h3>
+
+            <p>
+                Python is a high-level, general-purpose programming language.
+                It is popular because its syntax is simple and easy to understand.
+            </p>
+
+            <div class="tamil">
+                <strong>Simple Tamil Meaning:</strong><br>
+                Python oru programming language.
+                Computer-ku namma instructions kudukka idha use pannuvom.
+                Idhoda syntax beginner-ku easy-ah irukkum.
+            </div>
+
+            <h3>Example: First Python Program</h3>
+
+            <pre><code>print("Hello, World!")</code></pre>
+
+            <p><strong>Output:</strong></p>
+
+            <pre><code>Hello, World!</code></pre>
+
+            <div class="note">
+                <strong>Explanation:</strong>
+                print() is used to display information on the screen.
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>2. Variables and Data Types</h2>
+
+        <div class="topic">
+            <h3>What is a Variable?</h3>
+
+            <p>
+                A variable is a name used to store a value in a program.
+            </p>
+
+            <div class="tamil">
+                Variable-na oru value-ah store panna use panra name.
+                Example: student_name, age, marks.
+            </div>
+
+            <pre><code>student_name = "Santhiya"
+age = 21
+marks = 85.5
+
+print(student_name)
+print(age)
+print(marks)</code></pre>
+
+            <p><strong>Output:</strong></p>
+
+            <pre><code>Santhiya
+21
+85.5</code></pre>
+
+            <h3>Common Python Data Types</h3>
+
+            <pre><code>name = "Python"       # String
+age = 21              # Integer
+price = 99.5          # Float
+is_student = True     # Boolean</code></pre>
+
+            <div class="tamil">
+                <strong>Remember:</strong><br>
+                String – Text values<br>
+                Integer – Whole numbers<br>
+                Float – Decimal numbers<br>
+                Boolean – True or False
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>3. Python Operators</h2>
+
+        <div class="topic">
+            <p>
+                Operators are symbols used to perform operations on values.
+            </p>
+
+            <div class="tamil">
+                Operators-na values mela calculations or comparisons panna
+                use panra symbols.
+            </div>
+
+            <pre><code>a = 10
+b = 5
+
+print(a + b)
+print(a - b)
+print(a * b)
+print(a / b)
+print(a > b)</code></pre>
+
+            <p><strong>Output:</strong></p>
+
+            <pre><code>15
+5
+50
+2.0
+True</code></pre>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>4. Conditional Statements</h2>
+
+        <div class="topic">
+            <h3>What is if-else?</h3>
+
+            <p>
+                Conditional statements help a program make decisions
+                based on conditions.
+            </p>
+
+            <div class="tamil">
+                Condition-na oru check.
+                Condition True-na if block execute aagum.
+                False-na else block execute aagum.
+            </div>
+
+            <pre><code>age = 18
+
+if age >= 18:
+    print("Eligible")
+else:
+    print("Not Eligible")</code></pre>
+
+            <p><strong>Output:</strong></p>
+
+            <pre><code>Eligible</code></pre>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>5. Loops</h2>
+
+        <div class="topic">
+            <p>
+                Loops are used to execute a block of code repeatedly.
+            </p>
+
+            <div class="tamil">
+                Same code-ah repeated-ah execute panna loops use pannuvom.
+            </div>
+
+            <h3>For Loop</h3>
+
+            <pre><code>for i in range(1, 6):
+    print(i)</code></pre>
+
+            <p><strong>Output:</strong></p>
+
+            <pre><code>1
+2
+3
+4
+5</code></pre>
+
+            <h3>While Loop</h3>
+
+            <pre><code>count = 1
+
+while count <= 3:
+    print(count)
+    count += 1</code></pre>
+
+            <p><strong>Output:</strong></p>
+
+            <pre><code>1
+2
+3</code></pre>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>6. Practice Exercises</h2>
+
+        <p>Try these programs using Python.</p>
+
+        <div class="practice">
+            <ol>
+                <li>Write a program to print your name.</li>
+                <li>Create two variables and display their sum.</li>
+                <li>Write a program to check whether a number is positive or negative.</li>
+                <li>Print numbers from 1 to 10 using a for loop.</li>
+                <li>Write a program to calculate the square of a number.</li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>7. Knowledge Check – Quiz</h2>
+
+        <form id="quiz-form">
+
+            <div class="quiz-question">
+                <p><strong>1. Which function displays output in Python?</strong></p>
+
+                <label><input type="radio" name="q1" value="a"> input()</label>
+                <label><input type="radio" name="q1" value="b"> print()</label>
+                <label><input type="radio" name="q1" value="c"> display()</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>2. Which data type stores whole numbers?</strong></p>
+
+                <label><input type="radio" name="q2" value="a"> String</label>
+                <label><input type="radio" name="q2" value="b"> Float</label>
+                <label><input type="radio" name="q2" value="c"> Integer</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>3. Which keyword is used for a condition?</strong></p>
+
+                <label><input type="radio" name="q3" value="a"> if</label>
+                <label><input type="radio" name="q3" value="b"> print</label>
+                <label><input type="radio" name="q3" value="c"> for</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>4. Which loop is used to repeat code?</strong></p>
+
+                <label><input type="radio" name="q4" value="a"> input</label>
+                <label><input type="radio" name="q4" value="b"> for</label>
+                <label><input type="radio" name="q4" value="c"> int</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>5. What is the output of 10 + 5?</strong></p>
+
+                <label><input type="radio" name="q5" value="a"> 105</label>
+                <label><input type="radio" name="q5" value="b"> 15</label>
+                <label><input type="radio" name="q5" value="c"> 5</label>
+            </div>
+
+            <button type="button" onclick="checkQuiz()">
+                Submit Quiz
+            </button>
+
+            <div id="quiz-result"></div>
+
+        </form>
+    </section>
+
+    <!-- LESSON COMPLETION SECTION -->
+
+    <section class="panel completion-panel">
+
+        <h2>Lesson Completion</h2>
+
+        {% if is_completed %}
+
+            <div class="completed-message">
+                <h3>✓ Lesson Completed!</h3>
+                <p>You have successfully completed this lesson.</p>
+                Your progress has been saved successfully.
+            </div>
+
+            <button type="button"
+                    onclick="window.location.href='{% url 'learning_roadmap' %}'">
+                Back to Learning Roadmap
+            </button>
+
+        {% else %}
+
+            <p>
+                Finished learning and practising this lesson?
+                Mark it as completed to save your progress.
+            </p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <input type="hidden"
+                       name="action"
+                       value="complete_lesson">
+
+                <button type="submit">
+                    ✓ Mark Lesson as Completed
+                </button>
+            </form>
+
+        {% endif %}
+
+    </section>
+
+</main>
+
+<footer>
+    SkillBridge  · Learn Today, Grow Tomorrow
+</footer>
+
+<script>
+    function checkQuiz() {
+
+        const answers = {
+            q1: "b",
+            q2: "c",
+            q3: "a",
+            q4: "b",
+            q5: "b"
+        };
+
+        let score = 0;
+        let attempted = 0;
+
+        for (let question in answers) {
+
+            const selected = document.querySelector(
+                'input[name="' + question + '"]:checked'
+            );
+
+            if (selected) {
+                attempted++;
+
+                if (selected.value === answers[question]) {
+                    score++;
+                }
+            }
+        }
+
+        const result = document.getElementById("quiz-result");
+
+        if (attempted < 5) {
+            result.textContent =
+                "Please answer all 5 questions before submitting.";
+            return;
+        }
+
+        result.textContent =
+            "Your Score: " + score + " / 5. " +
+            (score >= 4
+                ? "Great work! Keep learning."
+                : "Good try! Review the lessons and try again.");
+    }
+</script>
+
+</body>
+</html>

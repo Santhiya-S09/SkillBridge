@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill Assessment | SkillBridge </title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --purple:#7952d9;
+    --pink:#e45caa;
+    --light-purple:#f1eaff;
+    --text:#29213d;
+    --muted:#81778f;
+    --border:#eee7f5;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:#faf7ff;
+    color:var(--text);
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:255px;
+    flex-shrink:0;
+    background:#ffffff;
+    border-right:1px solid var(--border);
+    padding:27px 17px;
+    display:flex;
+    flex-direction:column;
+    box-shadow:4px 0 20px #6e45a008;
+}
+
+.brand{
+    font-size:21px;
+    font-weight:900;
+    letter-spacing:-1px;
+    padding:5px 12px;
+    margin-bottom:48px;
+    color:#302442;
+}
+
+.brand span{
+    background:linear-gradient(90deg,#a16bea,#e45caa);
+    background-clip:text;
+    color:transparent;
+}
+
+.side-label{
+    font-size:9px;
+    letter-spacing:1.8px;
+    font-weight:800;
+    color:#aaa0b8;
+    padding:0 13px;
+    margin-bottom:14px;
+    margin-top:15px;
+}
+
+.sidebar a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#81778f;
+    padding:13px 14px;
+    margin-bottom:7px;
+    border:1px solid transparent;
+    border-radius:11px;
+    font-size:12px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.sidebar a:hover{
+    background:#f8f2ff;
+    color:#8052cc;
+}
+
+.sidebar a.active{
+    background:linear-gradient(100deg,#f0e7ff,#fff0f8);
+    border-color:#ead9ff;
+    color:#824ecb;
+    box-shadow:inset 3px 0 #a16bea;
+}
+
+.nav-icon{
+    font-size:17px;
+    width:20px;
+    text-align:center;
+}
+
+.sidebar-bottom{
+    margin-top:auto;
+    padding:18px;
+    border:1px solid #ead9ff;
+    border-radius:14px;
+    background:linear-gradient(140deg,#f4eaff,#fff0f7);
+}
+
+.sidebar-bottom h4{
+    font-size:12px;
+    color:#8c55c9;
+    margin-bottom:8px;
+}
+
+.sidebar-bottom p{
+    font-size:10px;
+    line-height:1.8;
+    color:#8a7c98;
+}
+
+/* MAIN */
+
+.main{
+    flex:1;
+    min-width:0;
+}
+
+.topbar{
+    height:76px;
+    padding:0 38px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#ffffff;
+    border-bottom:1px solid var(--border);
+}
+
+.topbar h3{
+    font-size:15px;
+    color:#302442;
+}
+
+.topbar small{
+    display:block;
+    color:#958a9f;
+    font-size:10px;
+    margin-top:5px;
+}
+
+.profile{
+    font-size:11px;
+    color:#9955c9;
+    font-weight:700;
+}
+
+.content{
+    max-width:1050px;
+    margin:auto;
+    padding:32px 38px 45px;
+}
+
+/* HERO */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    padding:34px 37px;
+    border-radius:20px;
+    border:1px solid #ffffff80;
+    background:
+        radial-gradient(circle at 85% 15%,#ffffff55,transparent 35%),
+        linear-gradient(110deg,#8155d8,#b45bc9 55%,#e76ba9);
+    margin-bottom:27px;
+    box-shadow:0 12px 30px #9b65d51c;
+}
+
+.hero:after{
+    content:"✦";
+    position:absolute;
+    right:65px;
+    top:-55px;
+    font-size:210px;
+    color:#ffffff20;
+}
+
+.hero-content{
+    position:relative;
+    z-index:1;
+}
+
+.hero-tag{
+    display:inline-block;
+    font-size:9px;
+    letter-spacing:1.5px;
+    font-weight:800;
+    color:#ffffff;
+    background:#ffffff24;
+    border:1px solid #ffffff40;
+    padding:8px 12px;
+    border-radius:30px;
+    margin-bottom:17px;
+}
+
+.hero h1{
+    font-size:clamp(23px,3vw,32px);
+    letter-spacing:-1px;
+    margin-bottom:12px;
+    color:white;
+}
+
+.hero h1 span{
+    color:#ffe1f2;
+}
+
+.hero p{
+    max-width:650px;
+    color:#fff0fa;
+    font-size:11px;
+    line-height:1.9;
+}
+
+/* FORM */
+
+.form-card,.result{
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:29px;
+    margin-bottom:24px;
+    box-shadow:0 8px 28px #73509b0a;
+}
+
+.card-heading{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:9px;
+}
+
+.heading-icon{
+    width:43px;
+    height:43px;
+    display:grid;
+    place-items:center;
+    background:#f2eaff;
+    border:1px solid #eadbff;
+    border-radius:12px;
+    font-size:20px;
+    color:#9859d1;
+}
+
+.form-card h2{
+    font-size:17px;
+    color:#352745;
+}
+
+.subtext{
+    font-size:10px;
+    color:#95899f;
+    line-height:1.8;
+    margin:10px 0 25px;
+}
+
+.category-title{
+    color:#9859c9;
+    font-size:13px;
+    font-weight:800;
+    margin:30px 0 16px;
+    padding-bottom:12px;
+    border-bottom:1px solid #f0e9f6;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.category-title:first-of-type{
+    margin-top:10px;
+}
+
+.skill-card{
+    background:linear-gradient(120deg,#fffaff,#faf7ff);
+    border:1px solid #eee5f7;
+    padding:19px;
+    border-radius:13px;
+    margin-bottom:13px;
+    transition:.25s;
+}
+
+.skill-card:hover{
+    border-color:#d8b9f5;
+    transform:translateY(-2px);
+    box-shadow:0 8px 22px #9d6bc51a;
+}
+
+label{
+    display:block;
+    font-weight:700;
+    font-size:11px;
+    color:#493b58;
+    margin-bottom:12px;
+}
+
+select{
+    width:100%;
+    padding:13px 14px;
+    border:1px solid #e9e0f0;
+    border-radius:9px;
+    background:#ffffff;
+    color:#6e627a;
+    font-size:11px;
+    font-family:Inter,Arial,sans-serif;
+    outline:none;
+    cursor:pointer;
+    transition:.2s;
+}
+
+select:focus{
+    border-color:#a16bea;
+    box-shadow:0 0 0 3px #a16bea18;
+}
+
+select option{
+    background:#ffffff;
+    color:#493b58;
+}
+
+/* BUTTON */
+
+.submit-btn{
+    width:100%;
+    padding:15px;
+    margin-top:23px;
+    background:linear-gradient(100deg,#8051d7,#df61aa);
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:11px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.25s;
+    box-shadow:0 7px 18px #a45ecb25;
+}
+
+.submit-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 9px 25px #a45ecb40;
+}
+
+/* MESSAGES */
+
+.error-message{
+    background:#fff0f3;
+    border:1px solid #ffd5df;
+    color:#c34c70;
+    padding:13px 16px;
+    border-radius:10px;
+    margin-bottom:15px;
+    font-size:11px;
+}
+
+/* RESULT */
+
+.result{
+    border-top:3px solid #a16bea;
+}
+
+.result-heading{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    margin-bottom:22px;
+}
+
+.result-icon{
+    width:43px;
+    height:43px;
+    display:grid;
+    place-items:center;
+    background:#f1eaff;
+    border-radius:12px;
+    font-size:20px;
+    color:#9859d1;
+}
+
+.result h2{
+    font-size:17px;
+    color:#352745;
+}
+
+.result p{
+    margin:13px 0;
+    color:#81778f;
+    font-size:11px;
+    line-height:1.8;
+}
+
+.result strong{
+    color:#8855c6;
+}
+
+.result-divider{
+    height:1px;
+    background:#eee7f5;
+    margin:22px 0;
+}
+
+.average{
+    font-weight:800;
+    font-size:13px !important;
+    color:#8b54c9 !important;
+    padding:15px;
+    background:#f6efff;
+    border:1px solid #eadbff;
+    border-radius:10px;
+}
+
+.level-box{
+    margin-top:17px;
+    padding:18px;
+    background:linear-gradient(100deg,#f1eaff,#fff0f7);
+    border:1px solid #ead8fa;
+    border-radius:12px;
+}
+
+.level-box h3{
+    font-size:15px;
+    color:#9855c9;
+    margin-bottom:9px;
+}
+
+.level-box p{
+    margin:0;
+}
+
+.result-note{
+    margin-top:18px !important;
+    color:#95899f !important;
+}
+
+.result-badge{
+    display:inline-block;
+    padding:7px 11px;
+    background:#f2eaff;
+    border:1px solid #e5d6fa;
+    color:#9256c9;
+    border-radius:20px;
+    font-size:9px;
+    font-weight:700;
+    margin-bottom:16px;
+}
+
+/* BACK LINK */
+
+.back-link{
+    display:block;
+    text-align:center;
+    margin-top:25px;
+    color:#9859c9;
+    font-weight:700;
+    font-size:11px;
+    transition:.2s;
+}
+
+.back-link:hover{
+    color:#df61aa;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    padding:22px;
+    border-top:1px solid var(--border);
+    font-size:9px;
+    color:#a096aa;
+}
+
+.footer strong{
+    color:#9859c9;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+    .sidebar{
+        width:220px;
+    }
+
+    .content{
+        padding:25px 20px;
+    }
+
+    .topbar{
+        padding:0 20px;
+    }
+}
+
+@media(max-width:700px){
+    .app{
+        display:block;
+    }
+
+    .sidebar{
+        width:100%;
+        height:auto;
+        padding:17px;
+    }
+
+    .brand{
+        margin-bottom:15px;
+    }
+
+    .side-label,.sidebar-bottom{
+        display:none;
+    }
+
+    .sidebar a{
+        display:inline-flex;
+        padding:9px;
+        margin:3px;
+        font-size:10px;
+    }
+
+    .topbar{
+        height:65px;
+        padding:0 14px;
+    }
+
+    .content{
+        padding:20px 14px;
+    }
+
+    .hero{
+        padding:26px 22px;
+    }
+
+    .hero:after{
+        display:none;
+    }
+
+    .form-card,.result{
+        padding:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="brand">✦ SkillBridge <span>AI</span></div>
+
+        <div class="side-label">WORKSPACE</div>
+
+        <a href="{% url 'dashboard' %}">
+            <span class="nav-icon">▦</span> Dashboard
+        </a>
+
+        <a href="{% url 'career_guidance' %}">
+            <span class="nav-icon">◎</span> Career Guidance
+        </a>
+
+        <a href="{% url 'skill_assessment' %}" class="active">
+            <span class="nav-icon">◇</span> Skill Assessment
+        </a>
+
+        <a href="{% url 'assessment_history' %}">
+            <span class="nav-icon">◷</span> Assessment History
+        </a>
+
+        <a href="{% url 'skill_gap_analysis' %}">
+            <span class="nav-icon">✦</span> AI Skill Gap Analysis
+        </a>
+
+        <a href="{% url 'learning_roadmap' %}">
+            <span class="nav-icon">↗</span> Learning Roadmap
+        </a>
+
+        <div class="side-label">ACCOUNT</div>
+
+        <a href="{% url 'logout' %}">
+            <span class="nav-icon">↗</span> Logout
+        </a>
+
+        <div class="sidebar-bottom">
+            <h4>✦ Keep Growing</h4>
+            <p>Every skill you improve brings you closer to your career goals.</p>
+        </div>
+
+    </aside>
+
+    <div class="main">
+
+        <header class="topbar">
+
+            <div>
+                <h3>Skill Assessment</h3>
+                <small>Evaluate your technical skills and learning level</small>
+            </div>
+
+            <div class="profile">
+                Welcome, {{ request.user.username }}
+            </div>
+
+        </header>
+
+        <main class="content">
+
+            <section class="hero">
+
+                <div class="hero-content">
+
+                    <span class="hero-tag">
+                        ✦ YOUR SKILL EVALUATION
+                    </span>
+
+                    <h1>
+                        Assess Your <span>Technical Skills</span> 🚀
+                    </h1>
+
+                    <p>
+                        Evaluate your current technical knowledge.
+                        Rate each skill honestly and discover your
+                        learning level to plan your next career step.
+                    </p>
+
+                </div>
+
+            </section>
+
+            <section class="form-card">
+
+                <div class="card-heading">
+
+                    <div class="heading-icon">◇</div>
+
+                    <h2>Evaluate Your Skills</h2>
+
+                </div>
+
+                <p class="subtext">
+                    Select your current knowledge level for each skill.
+                    Choose a rating from 1 to 5.
+                </p>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="error-message">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <h3 class="category-title">
+                        💻 Programming & Backend Skills
+                    </h3>
+
+                    <div class="skill-card">
+                        <label for="python_skill">Python Skill</label>
+
+                        <select name="python_skill" id="python_skill" required>
+                            <option value="">Select your level</option>
+                            <option value="1">1 - Beginner</option>
+                            <option value="2">2 - Basic</option>
+                            <option value="3">3 - Intermediate</option>
+                            <option value="4">4 - Good</option>
+                            <option value="5">5 - Excellent</option>
+                        </select>
+                    </div>
+
+                    <div class="skill-card">
+                        <label for="django_skill">Django Skill</label>
+
+                        <select name="django_skill" id="django_skill" required>
+                            <option value="">Select your level</option>
+                            <option value="1">1 - Beginner</option>
+                            <option value="2">2 - Basic</option>
+                            <option value="3">3 - Intermediate</option>
+                            <option value="4">4 - Good</option>
+                            <option value="5">5 - Excellent</option>
+                        </select>
+                    </div>
+
+                    <h3 class="category-title">
+                        🗄️ Database Skills
+                    </h3>
+
+                    <div class="skill-card">
+                        <label for="sql_skill">SQL Skill</label>
+
+                        <select name="sql_skill" id="sql_skill" required>
+                            <option value="">Select your level</option>
+                            <option value="1">1 - Beginner</option>
+                            <option value="2">2 - Basic</option>
+                            <option value="3">3 - Intermediate</option>
+                            <option value="4">4 - Good</option>
+                            <option value="5">5 - Excellent</option>
+                        </select>
+                    </div>
+
+                    <h3 class="category-title">
+                        🌐 Frontend Development Skills
+                    </h3>
+
+                    <div class="skill-card">
+                        <label for="html_skill">HTML Skill</label>
+
+                        <select name="html_skill" id="html_skill" required>
+                            <option value="">Select your level</option>
+                            <option value="1">1 - Beginner</option>
+                            <option value="2">2 - Basic</option>
+                            <option value="3">3 - Intermediate</option>
+                            <option value="4">4 - Good</option>
+                            <option value="5">5 - Excellent</option>
+                        </select>
+                    </div>
+
+                    <div class="skill-card">
+                        <label for="css_skill">CSS Skill</label>
+
+                        <select name="css_skill" id="css_skill" required>
+                            <option value="">Select your level</option>
+                            <option value="1">1 - Beginner</option>
+                            <option value="2">2 - Basic</option>
+                            <option value="3">3 - Intermediate</option>
+                            <option value="4">4 - Good</option>
+                            <option value="5">5 - Excellent</option>
+                        </select>
+                    </div>
+
+                    <div class="skill-card">
+                        <label for="javascript_skill">JavaScript Skill</label>
+
+                        <select name="javascript_skill" id="javascript_skill" required>
+                            <option value="">Select your level</option>
+                            <option value="1">1 - Beginner</option>
+                            <option value="2">2 - Basic</option>
+                            <option value="3">3 - Intermediate</option>
+                            <option value="4">4 - Good</option>
+                            <option value="5">5 - Excellent</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        ✦ Check My Skills →
+                    </button>
+
+                </form>
+
+            </section>
+
+            {% if scores %}
+
+            <section class="result">
+
+                <div class="result-heading">
+                    <div class="result-icon">✦</div>
+                    <h2>Your Assessment Result</h2>
+                </div>
+
+                <span class="result-badge">
+                    YOUR SKILL ASSESSMENT SUMMARY
+                </span>
+
+                {% for skill, score in scores.items %}
+                    <p>
+                        <strong>{{ skill }}:</strong> {{ score }}/5
+                    </p>
+                {% endfor %}
+
+                <div class="result-divider"></div>
+
+                <p class="average">
+                    Average Score: {{ average|floatformat:1 }}/5
+                </p>
+
+                <div class="level-box">
+                    <h3>
+                        Your Overall Level: {{ level }}
+                    </h3>
+
+                    <p>
+                        Keep learning and improving your technical skills
+                        to reach your career goals!
+                    </p>
+                </div>
+
+            </section>
+
+            {% endif %}
+
+            <a href="{% url 'dashboard' %}" class="back-link">
+                ← Back to Dashboard
+            </a>
+
+        </main>
+
+        <footer class="footer">
+            © 2026 <strong>SkillBridge </strong> · Your Career Growth Starts Here
+        </footer>
+
+    </div>
+
+</div>
+
+</body>
+</html>
